@@ -35,20 +35,15 @@ env/
 Thumbs.db
 Desktop.ini
 
-# Project artifacts
-data/captures/
-data/debug/*
-data/*.png
-data/*.jpg
-data/*.jpeg
-data/*.bmp
-!data/.gitkeep
-!data/debug/.gitkeep
+# Model weights (large binaries) — keep directory via .gitkeep
 models/*.pt
 models/*.onnx
 models/*.h5
 models/*.pkl
 !models/.gitkeep
+
+# data/captures e data/debug SÃO versionados de propósito
+# (revisão visual no GitHub / ChatGPT / PRs).
 
 # Logs / local config / cache
 *.log

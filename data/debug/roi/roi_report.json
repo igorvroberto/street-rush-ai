@@ -1,0 +1,432 @@
+[
+  {
+    "source": "frame_000030_1793391804.png",
+    "before": {
+      "character": 1,
+      "truck": 25,
+      "barrier": 44,
+      "coin": 29
+    },
+    "after_playable": {
+      "character": 0,
+      "truck": 2,
+      "barrier": 16,
+      "coin": 7
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 11,
+        "coin": 4
+      },
+      "soft": {
+        "character": 0,
+        "truck": 0,
+        "barrier": 5,
+        "coin": 3
+      },
+      "outside": {
+        "character": 1,
+        "truck": 23,
+        "barrier": 28,
+        "coin": 22
+      }
+    },
+    "total_before": 99,
+    "total_playable": 25,
+    "total_outside": 74,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000030_1793391804_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000030_1793391804_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000030_1793391804_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000060_1793391828.png",
+    "before": {
+      "character": 1,
+      "truck": 5,
+      "barrier": 9,
+      "coin": 15
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 2,
+      "barrier": 0,
+      "coin": 4
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 0,
+        "coin": 2
+      },
+      "soft": {
+        "character": 1,
+        "truck": 0,
+        "barrier": 0,
+        "coin": 2
+      },
+      "outside": {
+        "character": 0,
+        "truck": 3,
+        "barrier": 9,
+        "coin": 11
+      }
+    },
+    "total_before": 30,
+    "total_playable": 7,
+    "total_outside": 23,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000060_1793391828_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000060_1793391828_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000060_1793391828_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000090_1793391852.png",
+    "before": {
+      "character": 1,
+      "truck": 7,
+      "barrier": 7,
+      "coin": 13
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 2,
+      "barrier": 4,
+      "coin": 6
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 2,
+        "coin": 3
+      },
+      "soft": {
+        "character": 1,
+        "truck": 0,
+        "barrier": 2,
+        "coin": 3
+      },
+      "outside": {
+        "character": 0,
+        "truck": 5,
+        "barrier": 3,
+        "coin": 7
+      }
+    },
+    "total_before": 28,
+    "total_playable": 13,
+    "total_outside": 15,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000090_1793391852_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000090_1793391852_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000090_1793391852_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000120_1793391875.png",
+    "before": {
+      "character": 1,
+      "truck": 4,
+      "barrier": 4,
+      "coin": 4
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 2,
+      "barrier": 2,
+      "coin": 1
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 2,
+        "coin": 0
+      },
+      "soft": {
+        "character": 1,
+        "truck": 0,
+        "barrier": 0,
+        "coin": 1
+      },
+      "outside": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 2,
+        "coin": 3
+      }
+    },
+    "total_before": 13,
+    "total_playable": 6,
+    "total_outside": 7,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000120_1793391875_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000120_1793391875_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000120_1793391875_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000150_1793391899.png",
+    "before": {
+      "character": 1,
+      "truck": 14,
+      "barrier": 22,
+      "coin": 18
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 5,
+      "barrier": 10,
+      "coin": 1
+    },
+    "by_region": {
+      "core": {
+        "character": 1,
+        "truck": 3,
+        "barrier": 9,
+        "coin": 0
+      },
+      "soft": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 1,
+        "coin": 1
+      },
+      "outside": {
+        "character": 0,
+        "truck": 9,
+        "barrier": 12,
+        "coin": 17
+      }
+    },
+    "total_before": 55,
+    "total_playable": 17,
+    "total_outside": 38,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000150_1793391899_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000150_1793391899_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000150_1793391899_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000180_1793391920.png",
+    "before": {
+      "character": 1,
+      "truck": 6,
+      "barrier": 4,
+      "coin": 4
+    },
+    "after_playable": {
+      "character": 0,
+      "truck": 2,
+      "barrier": 1,
+      "coin": 2
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 0,
+        "coin": 1
+      },
+      "soft": {
+        "character": 0,
+        "truck": 0,
+        "barrier": 1,
+        "coin": 1
+      },
+      "outside": {
+        "character": 1,
+        "truck": 4,
+        "barrier": 3,
+        "coin": 2
+      }
+    },
+    "total_before": 15,
+    "total_playable": 5,
+    "total_outside": 10,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000180_1793391920_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000180_1793391920_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000180_1793391920_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000210_1793391941.png",
+    "before": {
+      "character": 1,
+      "truck": 3,
+      "barrier": 9,
+      "coin": 5
+    },
+    "after_playable": {
+      "character": 0,
+      "truck": 3,
+      "barrier": 2,
+      "coin": 4
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 0,
+        "coin": 4
+      },
+      "soft": {
+        "character": 0,
+        "truck": 1,
+        "barrier": 2,
+        "coin": 0
+      },
+      "outside": {
+        "character": 1,
+        "truck": 0,
+        "barrier": 7,
+        "coin": 1
+      }
+    },
+    "total_before": 18,
+    "total_playable": 9,
+    "total_outside": 9,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000210_1793391941_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000210_1793391941_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000210_1793391941_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000240_1793391962.png",
+    "before": {
+      "character": 1,
+      "truck": 13,
+      "barrier": 6,
+      "coin": 20
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 1,
+      "barrier": 1,
+      "coin": 10
+    },
+    "by_region": {
+      "core": {
+        "character": 1,
+        "truck": 1,
+        "barrier": 0,
+        "coin": 8
+      },
+      "soft": {
+        "character": 0,
+        "truck": 0,
+        "barrier": 1,
+        "coin": 2
+      },
+      "outside": {
+        "character": 0,
+        "truck": 12,
+        "barrier": 5,
+        "coin": 10
+      }
+    },
+    "total_before": 40,
+    "total_playable": 13,
+    "total_outside": 27,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000240_1793391962_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000240_1793391962_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000240_1793391962_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000270_1793391982.png",
+    "before": {
+      "character": 1,
+      "truck": 6,
+      "barrier": 12,
+      "coin": 8
+    },
+    "after_playable": {
+      "character": 0,
+      "truck": 4,
+      "barrier": 5,
+      "coin": 4
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 3,
+        "barrier": 1,
+        "coin": 1
+      },
+      "soft": {
+        "character": 0,
+        "truck": 1,
+        "barrier": 4,
+        "coin": 3
+      },
+      "outside": {
+        "character": 1,
+        "truck": 2,
+        "barrier": 7,
+        "coin": 4
+      }
+    },
+    "total_before": 27,
+    "total_playable": 13,
+    "total_outside": 14,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000270_1793391982_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000270_1793391982_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000270_1793391982_roi_detections.png"
+    }
+  },
+  {
+    "source": "frame_000300_1793390965.png",
+    "before": {
+      "character": 1,
+      "truck": 4,
+      "barrier": 26,
+      "coin": 8
+    },
+    "after_playable": {
+      "character": 1,
+      "truck": 2,
+      "barrier": 3,
+      "coin": 4
+    },
+    "by_region": {
+      "core": {
+        "character": 0,
+        "truck": 1,
+        "barrier": 1,
+        "coin": 0
+      },
+      "soft": {
+        "character": 1,
+        "truck": 1,
+        "barrier": 2,
+        "coin": 4
+      },
+      "outside": {
+        "character": 0,
+        "truck": 2,
+        "barrier": 23,
+        "coin": 4
+      }
+    },
+    "total_before": 39,
+    "total_playable": 10,
+    "total_outside": 29,
+    "outputs": {
+      "mask": "/workspace/data/debug/roi/frame_000300_1793390965_roi_mask.png",
+      "overlay": "/workspace/data/debug/roi/frame_000300_1793390965_roi_overlay.png",
+      "detections": "/workspace/data/debug/roi/frame_000300_1793390965_roi_detections.png"
+    }
+  }
+]

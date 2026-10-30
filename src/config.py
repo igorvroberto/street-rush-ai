@@ -17,10 +17,40 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 CAPTURES_DIR = DATA_DIR / "captures"
 DEBUG_DIR = DATA_DIR / "debug"
+ROI_DEBUG_DIR = DEBUG_DIR / "roi"
 MODELS_DIR = PROJECT_ROOT / "models"
 
 # Arquivos de captura a ignorar na renderização de debug offline.
 CAPTURE_IGNORE_NAMES = frozenset({"synthetic_sample.png"})
+
+# ---------------------------------------------------------------------------
+# ROI da pista (coordenadas normalizadas 0–1, origem no canto superior esquerdo)
+# ---------------------------------------------------------------------------
+# Núcleo (hard): asfalto + meio-fio + objetos na pista.
+ROI_CORE_NORMALIZED: tuple[tuple[float, float], ...] = (
+    (0.18, 0.98),  # bottom-left
+    (0.82, 0.98),  # bottom-right
+    (0.58, 0.38),  # top-right
+    (0.42, 0.38),  # top-left
+)
+# Soft (anel): expansão ~8% da largura / ~5% da altura em torno do núcleo.
+ROI_SOFT_NORMALIZED: tuple[tuple[float, float], ...] = (
+    (0.10, 1.00),  # bottom-left
+    (0.90, 1.00),  # bottom-right
+    (0.66, 0.33),  # top-right
+    (0.34, 0.33),  # top-left
+)
+# Associação à pista: NÃO usar só o centro — exigir interseção mínima.
+ROI_MIN_INTERSECTION_CORE = 0.30
+ROI_MIN_INTERSECTION_PLAYABLE = 0.30
+ROI_MIN_INTERSECTION_WITH_CENTER = 0.15
+
+# Cores BGR para debug de região.
+ROI_REGION_COLORS: dict[str, Tuple[int, int, int]] = {
+    "core": (0, 220, 0),
+    "soft": (0, 200, 255),
+    "outside": (80, 80, 80),
+}
 
 # Arquivo-sentinela: se existir, o loop salva um frame e remove o arquivo.
 # Funciona mesmo com o Last War em primeiro plano (sem roubar foco).

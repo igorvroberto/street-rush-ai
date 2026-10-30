@@ -21,7 +21,11 @@ python -m src.main --save-every 30
 
 # 3) Debug offline: boxes HSV nos frames reais → data/debug/
 python -m src.main --render-debug
+
+# 4) Debug ROI da pista (máscara + overlay + detecções core/soft/outside)
+python -m src.main --render-roi-debug
 ```
+
 
 
 Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.
@@ -29,6 +33,8 @@ Sem `--save-every` / `--save-interval`, **nenhum PNG é gravado** (o loop só pr
 Ao encerrar com Ctrl+C, o terminal mostra um resumo (frames, saves, FPS e caminhos absolutos).
 
 **Importante:** os PNGs vão para o caminho absoluto de `CAPTURES_DIR` (raiz do código), que pode diferir do `data/captures` relativo ao cwd do terminal. O programa imprime `cwd`, `PROJECT_ROOT` e `CAPTURES_DIR` na abertura.
+
+**Versionamento:** `data/captures/` e `data/debug/` (incluindo `roi/`) são commitados de propósito, para revisão visual no GitHub e por outras IAs. Não use `git add` seletivo que omita esses artefatos após gerar debug.
 
 ## Fluxo recomendado (Alt+Tab)
 

@@ -151,6 +151,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--render-roi-debug",
+        action="store_true",
+        help=(
+            "Gera debug da ROI da pista (máscara, overlay, detecções core/soft/outside) "
+            "em data/debug/roi/ a partir dos frames reais (sem captura ao vivo)."
+        ),
+    )
+    parser.add_argument(
         "--trace-frames",
         action="store_true",
         default=True,
@@ -580,6 +588,11 @@ def main(argv: list[str] | None = None) -> int:
         from src.debug_render import run_debug_cli
 
         return run_debug_cli()
+
+    if args.render_roi_debug:
+        from src.roi_debug import run_roi_debug_cli
+
+        return run_roi_debug_cli()
 
     if args.image:
         return analyze_image(Path(args.image), show_preview=bool(args.preview))
