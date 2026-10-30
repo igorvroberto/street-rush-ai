@@ -10,22 +10,30 @@ Esta versão **captura o monitor integral em segundo plano** e valida detecçõe
 - Python 3.10+
 - Monitor do jogo (referência do projeto: **1918 × 1078** — a captura usa a resolução real do MSS)
 
-## Comando definitivo
+## Comando definitivo (com salvamento verificável)
 
 ```bash
-python -m src.main
+# 1) Teste controlado: 1 frame REAL do MSS → salva e encerra
+python -m src.main --diag-capture
+
+# 2) Loop contínuo (NÃO encerra sozinho — use Ctrl+C)
+python -m src.main --save-every 30
 ```
 
 Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.
+Sem `--save-every` / `--save-interval`, **nenhum PNG é gravado** (o loop só processa e loga).
+Ao encerrar com Ctrl+C, o terminal mostra um resumo (frames, saves, FPS e caminhos absolutos).
+
+**Importante:** os PNGs vão para o caminho absoluto de `CAPTURES_DIR` (raiz do código), que pode diferir do `data/captures` relativo ao cwd do terminal. O programa imprime `cwd`, `PROJECT_ROOT` e `CAPTURES_DIR` na abertura.
 
 ## Fluxo recomendado (Alt+Tab)
 
 1. Abra o Cursor e o terminal integrado.
-2. Execute: `python -m src.main`
-3. Confira no terminal o monitor e a resolução reportados pelo MSS.
+2. Execute: `python -m src.main --save-every 30`
+3. Confira no terminal: monitor, resolução MSS e o **caminho absoluto** de `data/captures`.
 4. Use **Alt+Tab** para colocar o **Last War** em primeiro plano.
-5. O Python continua capturando o monitor e processando frames em segundo plano.
-6. Volte ao terminal (Alt+Tab) e use **Ctrl+C** para encerrar.
+5. O Python continua capturando/salvando em segundo plano (mensagem a cada PNG).
+6. Volte ao terminal (Alt+Tab) e use **Ctrl+C** para ver o **resumo final**.
 
 Não é necessário manter o Cursor em primeiro plano. Não há seletor de região (`selectROI`).
 
