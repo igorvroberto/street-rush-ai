@@ -1,0 +1,44 @@
+{
+  "session_id": "session_20261030_185733",
+  "created_at": "2026-10-30T18:57:33-03:00",
+  "started_at": "2026-10-30T18:57:33-03:00",
+  "ended_at": "2026-10-30T19:01:41-03:00",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps_avg": 1.3635756225397302,
+  "frames_saved": 67,
+  "frames_captured": 336,
+  "frames_processed": 335,
+  "parameters": {
+    "monitor": 1,
+    "save_every": 5,
+    "save_interval": 0.0,
+    "max_frames": 600,
+    "preview": false,
+    "stats_interval": 1.0,
+    "dump_state": false,
+    "output_dir": null
+  },
+  "paths": {
+    "session_dir": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\captures\\session_20261030_185733",
+    "frames_dir": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\captures\\session_20261030_185733\\frames",
+    "metadata": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\captures\\session_20261030_185733\\metadata.json",
+    "debug_dir": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733"
+  },
+  "comparison": {
+    "character_hit_rate": null,
+    "character_mean_confidence": null,
+    "false_positives": null,
+    "false_negatives": null,
+    "frames_analyzed": null,
+    "by_situation": {
+      "run": null,
+      "jump": null,
+      "crouch": null,
+      "lane_change": null
+    }
+  },
+  "notes": "comparison.* é reservado para validação futura entre sessões; não usar a saída do detector como ground truth automático."
+}

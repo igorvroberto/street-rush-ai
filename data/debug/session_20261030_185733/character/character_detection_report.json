@@ -1,0 +1,3096 @@
+{
+  "frames_total": 67,
+  "frames_with_gt": 0,
+  "hits": 0,
+  "misses": 0,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "hit_rate": null,
+  "hit_max_distance": 0.06,
+  "use_temporal": false,
+  "note": "Acerto = distância do centro DETECTADO ao REAL (corpo) ≤ limiar. Não conta sucesso só por região central. HSV legado só para comparação.",
+  "frames": [
+    {
+      "source": "frame_000005.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1060,
+          620,
+          72,
+          97
+        ],
+        "center": [
+          1096.0,
+          668.5
+        ],
+        "center_norm": [
+          0.5708333333333333,
+          0.6189814814814815
+        ],
+        "confidence": 0.9165594664675969,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.13381647347011
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          1025,
+          93,
+          55
+        ],
+        "center": [
+          46.5,
+          1052.5
+        ],
+        "confidence": 0.8437487781036168,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000005_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000010.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          935,
+          601,
+          44,
+          117
+        ],
+        "center": [
+          957.0,
+          659.5
+        ],
+        "center_norm": [
+          0.4984375,
+          0.6106481481481482
+        ],
+        "confidence": 0.8129717632925745,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.237028267565998
+      },
+      "hsv_legacy": {
+        "bbox": [
+          711,
+          804,
+          20,
+          50
+        ],
+        "center": [
+          721.0,
+          829.0
+        ],
+        "confidence": 0.5944125,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000010_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000015.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1175,
+          613,
+          58,
+          47
+        ],
+        "center": [
+          1204.0,
+          636.5
+        ],
+        "center_norm": [
+          0.6270833333333333,
+          0.5893518518518519
+        ],
+        "confidence": 0.8401752303526503,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.469712285489509
+      },
+      "hsv_legacy": {
+        "bbox": [
+          111,
+          743,
+          49,
+          25
+        ],
+        "center": [
+          135.5,
+          755.5
+        ],
+        "confidence": 0.39407366071428573,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000015_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000020.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          936,
+          569,
+          53,
+          121
+        ],
+        "center": [
+          962.5,
+          629.5
+        ],
+        "center_norm": [
+          0.5013020833333334,
+          0.5828703703703704
+        ],
+        "confidence": 0.8185091761097351,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.318151563736085
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1414,
+          544,
+          70,
+          17
+        ],
+        "center": [
+          1449.0,
+          552.5
+        ],
+        "confidence": 0.38240073529411767,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000020_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000025.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1049,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          1085.0,
+          404.5
+        ],
+        "center_norm": [
+          0.5651041666666666,
+          0.37453703703703706
+        ],
+        "confidence": 0.934795292474036,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.275654340528576
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          438,
+          158,
+          141
+        ],
+        "center": [
+          79.0,
+          508.5
+        ],
+        "confidence": 0.7638701858335578,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000025_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000030.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          897,
+          553,
+          72,
+          97
+        ],
+        "center": [
+          933.0,
+          601.5
+        ],
+        "center_norm": [
+          0.4859375,
+          0.5569444444444445
+        ],
+        "confidence": 0.9085886942950712,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.053427612732295
+      },
+      "hsv_legacy": {
+        "bbox": [
+          488,
+          935,
+          30,
+          105
+        ],
+        "center": [
+          503.0,
+          987.5
+        ],
+        "confidence": 0.5719427083333333,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000030_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000035.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          972,
+          404,
+          72,
+          97
+        ],
+        "center": [
+          1008.0,
+          452.5
+        ],
+        "center_norm": [
+          0.525,
+          0.41898148148148145
+        ],
+        "confidence": 0.8610789220147126,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.671832435855381
+      },
+      "hsv_legacy": {
+        "bbox": [
+          249,
+          979,
+          27,
+          51
+        ],
+        "center": [
+          262.5,
+          1004.5
+        ],
+        "confidence": 0.4408341843681917,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000035_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000040.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          886,
+          550,
+          72,
+          97
+        ],
+        "center": [
+          922.0,
+          598.5
+        ],
+        "center_norm": [
+          0.48020833333333335,
+          0.5541666666666667
+        ],
+        "confidence": 0.9146974624007052,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.083022566529233
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1624,
+          1046,
+          28,
+          21
+        ],
+        "center": [
+          1638.0,
+          1056.5
+        ],
+        "confidence": 0.4466636904761904,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000040_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000045.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          970,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          1006.0,
+          404.5
+        ],
+        "center_norm": [
+          0.5239583333333333,
+          0.37453703703703706
+        ],
+        "confidence": 0.907851393019915,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.010559252081586
+      },
+      "hsv_legacy": {
+        "bbox": [
+          912,
+          1014,
+          17,
+          65
+        ],
+        "center": [
+          920.5,
+          1046.5
+        ],
+        "confidence": 0.6463549208144796,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000045_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000050.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          781,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          817.0,
+          404.5
+        ],
+        "center_norm": [
+          0.42552083333333335,
+          0.37453703703703706
+        ],
+        "confidence": 0.9144555254158354,
+        "region": "soft",
+        "source_cue": "red",
+        "score": 6.0714927331871715
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1769,
+          654,
+          151,
+          148
+        ],
+        "center": [
+          1844.5,
+          728.0
+        ],
+        "confidence": 0.8604181582244497,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000050_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000055.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1067,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          1103.0,
+          428.5
+        ],
+        "center_norm": [
+          0.5744791666666667,
+          0.39675925925925926
+        ],
+        "confidence": 0.9152747323371682,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.120789769851889
+      },
+      "hsv_legacy": {
+        "bbox": [
+          934,
+          361,
+          70,
+          265
+        ],
+        "center": [
+          969.0,
+          493.5
+        ],
+        "confidence": 0.8534622641509434,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000055_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000060.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1022,
+          597,
+          53,
+          95
+        ],
+        "center": [
+          1048.5,
+          644.5
+        ],
+        "center_norm": [
+          0.54609375,
+          0.5967592592592592
+        ],
+        "confidence": 0.8760225163987606,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.544132124412043
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          311,
+          648,
+          769
+        ],
+        "center": [
+          324.0,
+          695.5
+        ],
+        "confidence": 0.8086185963813836,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000060_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000065.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1072,
+          603,
+          72,
+          97
+        ],
+        "center": [
+          1108.0,
+          651.5
+        ],
+        "center_norm": [
+          0.5770833333333333,
+          0.6032407407407407
+        ],
+        "confidence": 0.9324960373970314,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.245529135115399
+      },
+      "hsv_legacy": {
+        "bbox": [
+          841,
+          946,
+          250,
+          134
+        ],
+        "center": [
+          966.0,
+          1013.0
+        ],
+        "confidence": 0.9799820895522389,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000065_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000070.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          806,
+          575,
+          72,
+          97
+        ],
+        "center": [
+          842.0,
+          623.5
+        ],
+        "center_norm": [
+          0.43854166666666666,
+          0.5773148148148148
+        ],
+        "confidence": 0.917234665716098,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.1237066526033
+      },
+      "hsv_legacy": {
+        "bbox": [
+          416,
+          852,
+          49,
+          57
+        ],
+        "center": [
+          440.5,
+          880.5
+        ],
+        "confidence": 0.7024608787593984,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000070_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000075.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          805,
+          593,
+          72,
+          97
+        ],
+        "center": [
+          841.0,
+          641.5
+        ],
+        "center_norm": [
+          0.43802083333333336,
+          0.5939814814814814
+        ],
+        "confidence": 0.9204677701503222,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.166828340391617
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1580,
+          888,
+          340,
+          192
+        ],
+        "center": [
+          1750.0,
+          984.0
+        ],
+        "confidence": 0.9097173713235294,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000075_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000080.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          778,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          814.0,
+          428.5
+        ],
+        "center_norm": [
+          0.4239583333333333,
+          0.39675925925925926
+        ],
+        "confidence": 0.9053348072419491,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.042109408949577
+      },
+      "hsv_legacy": {
+        "bbox": [
+          626,
+          786,
+          70,
+          78
+        ],
+        "center": [
+          661.0,
+          825.0
+        ],
+        "confidence": 0.7753205128205128,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000080_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000085.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1028,
+          594,
+          45,
+          45
+        ],
+        "center": [
+          1050.5,
+          616.5
+        ],
+        "center_norm": [
+          0.5471354166666667,
+          0.5708333333333333
+        ],
+        "confidence": 0.8497919251988467,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.550577579762881
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          531,
+          696,
+          549
+        ],
+        "center": [
+          348.0,
+          805.5
+        ],
+        "confidence": 0.907252344911333,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000085_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000090.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          865,
+          587,
+          44,
+          46
+        ],
+        "center": [
+          887.0,
+          610.0
+        ],
+        "center_norm": [
+          0.46197916666666666,
+          0.5648148148148148
+        ],
+        "confidence": 0.8657287079900091,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.639224418857181
+      },
+      "hsv_legacy": {
+        "bbox": [
+          526,
+          801,
+          75,
+          185
+        ],
+        "center": [
+          563.5,
+          893.5
+        ],
+        "confidence": 0.8388864864864864,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000090_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000095.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1054,
+          404,
+          72,
+          97
+        ],
+        "center": [
+          1090.0,
+          452.5
+        ],
+        "center_norm": [
+          0.5677083333333334,
+          0.41898148148148145
+        ],
+        "confidence": 0.9259091015700929,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.206668207329609
+      },
+      "hsv_legacy": {
+        "bbox": [
+          471,
+          750,
+          69,
+          87
+        ],
+        "center": [
+          505.5,
+          793.5
+        ],
+        "confidence": 0.8136015325670498,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000095_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000100.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          919,
+          617,
+          72,
+          97
+        ],
+        "center": [
+          955.0,
+          665.5
+        ],
+        "center_norm": [
+          0.4973958333333333,
+          0.6162037037037037
+        ],
+        "confidence": 0.946318463556542,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.383948405908799
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          602,
+          567,
+          478
+        ],
+        "center": [
+          283.5,
+          841.0
+        ],
+        "confidence": 0.8309894622656129,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000100_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000105.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          781,
+          490,
+          72,
+          97
+        ],
+        "center": [
+          817.0,
+          538.5
+        ],
+        "center_norm": [
+          0.42552083333333335,
+          0.4986111111111111
+        ],
+        "confidence": 0.9064211328741418,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.031813160129075
+      },
+      "hsv_legacy": {
+        "bbox": [
+          165,
+          872,
+          41,
+          48
+        ],
+        "center": [
+          185.5,
+          896.0
+        ],
+        "confidence": 0.4386557418699187,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000105_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000110.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1056,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          1092.0,
+          404.5
+        ],
+        "center_norm": [
+          0.56875,
+          0.37453703703703706
+        ],
+        "confidence": 0.9322959771519361,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.2652471658486455
+      },
+      "hsv_legacy": {
+        "bbox": [
+          752,
+          584,
+          45,
+          52
+        ],
+        "center": [
+          774.5,
+          610.0
+        ],
+        "confidence": 0.5405375267094017,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000110_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000115.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          767,
+          579,
+          72,
+          97
+        ],
+        "center": [
+          803.0,
+          627.5
+        ],
+        "center_norm": [
+          0.41822916666666665,
+          0.5810185185185185
+        ],
+        "confidence": 0.9090426118690845,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.06569448247577
+      },
+      "hsv_legacy": {
+        "bbox": [
+          710,
+          931,
+          49,
+          57
+        ],
+        "center": [
+          734.5,
+          959.5
+        ],
+        "confidence": 0.49780901472431077,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000115_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000120.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          939,
+          634,
+          40,
+          33
+        ],
+        "center": [
+          959.0,
+          650.5
+        ],
+        "center_norm": [
+          0.49947916666666664,
+          0.6023148148148149
+        ],
+        "confidence": 0.9082109623286428,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.961303971663703
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          276,
+          831,
+          804
+        ],
+        "center": [
+          415.5,
+          678.0
+        ],
+        "confidence": 0.8832047269668505,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000120_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000125.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          987,
+          618,
+          15,
+          21
+        ],
+        "center": [
+          994.5,
+          628.5
+        ],
+        "center_norm": [
+          0.51796875,
+          0.5819444444444445
+        ],
+        "confidence": 0.874680774820632,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.693183752989585
+      },
+      "hsv_legacy": {
+        "bbox": [
+          924,
+          624,
+          42,
+          30
+        ],
+        "center": [
+          945.0,
+          639.0
+        ],
+        "confidence": 0.5126788194444445,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000125_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000130.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          798,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          834.0,
+          404.5
+        ],
+        "center_norm": [
+          0.434375,
+          0.37453703703703706
+        ],
+        "confidence": 0.8658822864404448,
+        "region": "soft",
+        "source_cue": "red",
+        "score": 5.68185281818956
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          860,
+          294,
+          220
+        ],
+        "center": [
+          147.0,
+          970.0
+        ],
+        "confidence": 0.8673133116883117,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000130_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000135.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          936,
+          584,
+          41,
+          97
+        ],
+        "center": [
+          956.5,
+          632.5
+        ],
+        "center_norm": [
+          0.4981770833333333,
+          0.5856481481481481
+        ],
+        "confidence": 0.7820943791053149,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 4.996449698043026
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1546,
+          662,
+          96,
+          31
+        ],
+        "center": [
+          1594.0,
+          677.5
+        ],
+        "confidence": 0.6626797715053763,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000135_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000140.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          887,
+          356,
+          97,
+          103
+        ],
+        "center": [
+          935.5,
+          407.5
+        ],
+        "center_norm": [
+          0.48723958333333334,
+          0.3773148148148148
+        ],
+        "confidence": 0.9417209020907858,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.107502066987711
+      },
+      "hsv_legacy": {
+        "bbox": [
+          955,
+          246,
+          965,
+          834
+        ],
+        "center": [
+          1437.5,
+          663.0
+        ],
+        "confidence": 0.78927482884159,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000140_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000145.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          939,
+          363,
+          43,
+          36
+        ],
+        "center": [
+          960.5,
+          381.0
+        ],
+        "center_norm": [
+          0.5002604166666667,
+          0.3527777777777778
+        ],
+        "confidence": 0.8639201020074472,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 5.677803375536682
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1796,
+          528,
+          116,
+          108
+        ],
+        "center": [
+          1854.0,
+          582.0
+        ],
+        "confidence": 0.8561083173690932,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000145_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000150.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          919,
+          703,
+          72,
+          97
+        ],
+        "center": [
+          955.0,
+          751.5
+        ],
+        "center_norm": [
+          0.4973958333333333,
+          0.6958333333333333
+        ],
+        "confidence": 0.9115261980811783,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.0952881858254235
+      },
+      "hsv_legacy": {
+        "bbox": [
+          167,
+          623,
+          90,
+          107
+        ],
+        "center": [
+          212.0,
+          676.5
+        ],
+        "confidence": 0.7267601246105919,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000150_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000155.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          795,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          831.0,
+          404.5
+        ],
+        "center_norm": [
+          0.4328125,
+          0.37453703703703706
+        ],
+        "confidence": 0.9070705486157415,
+        "region": "soft",
+        "source_cue": "red",
+        "score": 5.993551870773255
+      },
+      "hsv_legacy": {
+        "bbox": [
+          748,
+          613,
+          50,
+          57
+        ],
+        "center": [
+          773.0,
+          641.5
+        ],
+        "confidence": 0.6160868969298245,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000155_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000160.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          936,
+          434,
+          47,
+          46
+        ],
+        "center": [
+          959.5,
+          457.0
+        ],
+        "center_norm": [
+          0.49973958333333335,
+          0.42314814814814816
+        ],
+        "confidence": 0.8851416811588094,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.784777262825335
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1827,
+          1047,
+          73,
+          33
+        ],
+        "center": [
+          1863.5,
+          1063.5
+        ],
+        "confidence": 0.5380258081672894,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000160_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000165.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          916,
+          644,
+          72,
+          97
+        ],
+        "center": [
+          952.0,
+          692.5
+        ],
+        "center_norm": [
+          0.49583333333333335,
+          0.6412037037037037
+        ],
+        "confidence": 0.9385143606868199,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.3177144019153735
+      },
+      "hsv_legacy": {
+        "bbox": [
+          418,
+          835,
+          49,
+          46
+        ],
+        "center": [
+          442.5,
+          858.0
+        ],
+        "confidence": 0.9298913043478261,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000165_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000170.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1043,
+          608,
+          11,
+          16
+        ],
+        "center": [
+          1048.5,
+          616.0
+        ],
+        "center_norm": [
+          0.54609375,
+          0.5703703703703704
+        ],
+        "confidence": 0.871228421181378,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.467492133745934
+      },
+      "hsv_legacy": {
+        "bbox": [
+          214,
+          760,
+          80,
+          95
+        ],
+        "center": [
+          254.0,
+          807.5
+        ],
+        "confidence": 0.7938684210526317,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000170_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000175.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          935,
+          566,
+          44,
+          89
+        ],
+        "center": [
+          957.0,
+          610.5
+        ],
+        "center_norm": [
+          0.4984375,
+          0.5652777777777778
+        ],
+        "confidence": 0.8745585438010386,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.595827345524239
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1726,
+          561,
+          48,
+          39
+        ],
+        "center": [
+          1750.0,
+          580.5
+        ],
+        "confidence": 0.6477916666666667,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000175_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000180.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          976,
+          367,
+          72,
+          97
+        ],
+        "center": [
+          1012.0,
+          415.5
+        ],
+        "center_norm": [
+          0.5270833333333333,
+          0.38472222222222224
+        ],
+        "confidence": 0.913471747114026,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.093776197311122
+      },
+      "hsv_legacy": {
+        "bbox": [
+          801,
+          738,
+          214,
+          342
+        ],
+        "center": [
+          908.0,
+          909.0
+        ],
+        "confidence": 0.9639206563917582,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000180_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000185.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1017,
+          551,
+          39,
+          83
+        ],
+        "center": [
+          1036.5,
+          592.5
+        ],
+        "center_norm": [
+          0.53984375,
+          0.5486111111111112
+        ],
+        "confidence": 0.9189864049023748,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.827293820067118
+      },
+      "hsv_legacy": {
+        "bbox": [
+          319,
+          612,
+          33,
+          51
+        ],
+        "center": [
+          335.5,
+          637.5
+        ],
+        "confidence": 0.788033960932858,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000185_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000190.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          987,
+          694,
+          72,
+          97
+        ],
+        "center": [
+          1023.0,
+          742.5
+        ],
+        "center_norm": [
+          0.5328125,
+          0.6875
+        ],
+        "confidence": 0.8837892586549543,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.833906081328221
+      },
+      "hsv_legacy": {
+        "bbox": [
+          976,
+          561,
+          40,
+          35
+        ],
+        "center": [
+          996.0,
+          578.5
+        ],
+        "confidence": 0.319265625,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000190_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000195.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          769,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          805.0,
+          404.5
+        ],
+        "center_norm": [
+          0.4192708333333333,
+          0.37453703703703706
+        ],
+        "confidence": 0.9301360132551691,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.225142673694423
+      },
+      "hsv_legacy": {
+        "bbox": [
+          154,
+          672,
+          27,
+          44
+        ],
+        "center": [
+          167.5,
+          694.0
+        ],
+        "confidence": 0.5515790193602693,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000195_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000200.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          934,
+          612,
+          39,
+          38
+        ],
+        "center": [
+          953.5,
+          631.0
+        ],
+        "center_norm": [
+          0.49661458333333336,
+          0.5842592592592593
+        ],
+        "confidence": 0.9164257048177938,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.693921459627609
+      },
+      "hsv_legacy": {
+        "bbox": [
+          201,
+          1051,
+          50,
+          29
+        ],
+        "center": [
+          226.0,
+          1065.5
+        ],
+        "confidence": 0.6366196120689656,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000200_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000205.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          750,
+          640,
+          38,
+          33
+        ],
+        "center": [
+          769.0,
+          656.5
+        ],
+        "center_norm": [
+          0.4005208333333333,
+          0.6078703703703704
+        ],
+        "confidence": 0.8548925927285903,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.62320315489202
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1738,
+          619,
+          31,
+          32
+        ],
+        "center": [
+          1753.5,
+          635.0
+        ],
+        "confidence": 0.3518301411290322,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000205_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000210.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          857,
+          379,
+          43,
+          47
+        ],
+        "center": [
+          878.5,
+          402.5
+        ],
+        "center_norm": [
+          0.45755208333333336,
+          0.3726851851851852
+        ],
+        "confidence": 0.8721699933874208,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 5.752033982501886
+      },
+      "hsv_legacy": {
+        "bbox": [
+          688,
+          587,
+          202,
+          164
+        ],
+        "center": [
+          789.0,
+          669.0
+        ],
+        "confidence": 0.9303761168799807,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000210_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000215.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1279,
+          391,
+          72,
+          97
+        ],
+        "center": [
+          1315.0,
+          439.5
+        ],
+        "center_norm": [
+          0.6848958333333334,
+          0.40694444444444444
+        ],
+        "confidence": 0.8498481937628757,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 5.562679051470606
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1856,
+          1063,
+          48,
+          17
+        ],
+        "center": [
+          1880.0,
+          1071.5
+        ],
+        "confidence": 0.45141023284313725,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000215_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000220.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          775,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          811.0,
+          404.5
+        ],
+        "center_norm": [
+          0.42239583333333336,
+          0.37453703703703706
+        ],
+        "confidence": 0.8716053107307973,
+        "region": "soft",
+        "source_cue": "orange",
+        "score": 5.760092986909601
+      },
+      "hsv_legacy": {
+        "bbox": [
+          139,
+          925,
+          372,
+          11
+        ],
+        "center": [
+          325.0,
+          930.5
+        ],
+        "confidence": 0.7526734940127077,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000220_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000225.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1047,
+          547,
+          72,
+          97
+        ],
+        "center": [
+          1083.0,
+          595.5
+        ],
+        "center_norm": [
+          0.5640625,
+          0.5513888888888889
+        ],
+        "confidence": 0.9103428797622145,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.083602003972921
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1741,
+          1042,
+          98,
+          38
+        ],
+        "center": [
+          1790.0,
+          1061.0
+        ],
+        "confidence": 0.8207236842105263,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000225_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000230.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1044,
+          588,
+          38,
+          34
+        ],
+        "center": [
+          1063.0,
+          605.0
+        ],
+        "center_norm": [
+          0.5536458333333333,
+          0.5601851851851852
+        ],
+        "confidence": 0.8605697424815437,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.540743770874945
+      },
+      "hsv_legacy": {
+        "bbox": [
+          14,
+          535,
+          131,
+          113
+        ],
+        "center": [
+          79.5,
+          591.5
+        ],
+        "confidence": 0.757106667567385,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000230_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000235.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          751,
+          573,
+          72,
+          97
+        ],
+        "center": [
+          787.0,
+          621.5
+        ],
+        "center_norm": [
+          0.40989583333333335,
+          0.575462962962963
+        ],
+        "confidence": 0.92205323806449,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.18250276072746
+      },
+      "hsv_legacy": {
+        "bbox": [
+          901,
+          630,
+          114,
+          111
+        ],
+        "center": [
+          958.0,
+          685.5
+        ],
+        "confidence": 0.8673462936620832,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000235_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000240.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1249,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          1285.0,
+          428.5
+        ],
+        "center_norm": [
+          0.6692708333333334,
+          0.39675925925925926
+        ],
+        "confidence": 0.8691125170967943,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 5.705855105339063
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1036,
+          982,
+          27,
+          34
+        ],
+        "center": [
+          1049.5,
+          999.0
+        ],
+        "confidence": 0.48550214460784313,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000240_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000245.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          917,
+          591,
+          29,
+          31
+        ],
+        "center": [
+          931.5,
+          606.5
+        ],
+        "center_norm": [
+          0.48515625,
+          0.5615740740740741
+        ],
+        "confidence": 0.9535648754857994,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.995574293363714
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          674,
+          342,
+          366
+        ],
+        "center": [
+          171.0,
+          857.0
+        ],
+        "confidence": 0.8206072444316621,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000245_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000250.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          744,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          780.0,
+          404.5
+        ],
+        "center_norm": [
+          0.40625,
+          0.37453703703703706
+        ],
+        "confidence": 0.8587369371627254,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 5.623943486856753
+      },
+      "hsv_legacy": {
+        "bbox": [
+          83,
+          1034,
+          227,
+          40
+        ],
+        "center": [
+          196.5,
+          1054.0
+        ],
+        "confidence": 0.9095512114537445,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000250_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000255.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          940,
+          638,
+          36,
+          29
+        ],
+        "center": [
+          958.0,
+          652.5
+        ],
+        "center_norm": [
+          0.49895833333333334,
+          0.6041666666666666
+        ],
+        "confidence": 0.8637941404216456,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.672254978798407
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1684,
+          940,
+          99,
+          92
+        ],
+        "center": [
+          1733.5,
+          986.0
+        ],
+        "confidence": 0.7749286341677646,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000255_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000260.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          864,
+          579,
+          39,
+          42
+        ],
+        "center": [
+          883.5,
+          600.0
+        ],
+        "center_norm": [
+          0.46015625,
+          0.5555555555555556
+        ],
+        "confidence": 0.8565781701283367,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.600971964844589
+      },
+      "hsv_legacy": {
+        "bbox": [
+          492,
+          628,
+          56,
+          70
+        ],
+        "center": [
+          520.0,
+          663.0
+        ],
+        "confidence": 0.8996428571428572,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000260_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000265.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          928,
+          566,
+          58,
+          71
+        ],
+        "center": [
+          957.0,
+          601.5
+        ],
+        "center_norm": [
+          0.4984375,
+          0.5569444444444445
+        ],
+        "confidence": 0.9323863106606449,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.150871873278745
+      },
+      "hsv_legacy": {
+        "bbox": [
+          318,
+          936,
+          25,
+          51
+        ],
+        "center": [
+          330.5,
+          961.5
+        ],
+        "confidence": 0.5888572303921569,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000265_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000270.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1058,
+          572,
+          72,
+          97
+        ],
+        "center": [
+          1094.0,
+          620.5
+        ],
+        "center_norm": [
+          0.5697916666666667,
+          0.5745370370370371
+        ],
+        "confidence": 0.9351360185966789,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.287871590881883
+      },
+      "hsv_legacy": {
+        "bbox": [
+          856,
+          639,
+          188,
+          441
+        ],
+        "center": [
+          950.0,
+          859.5
+        ],
+        "confidence": 0.9597876561972307,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000270_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000275.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          942,
+          606,
+          44,
+          36
+        ],
+        "center": [
+          964.0,
+          624.0
+        ],
+        "center_norm": [
+          0.5020833333333333,
+          0.5777777777777777
+        ],
+        "confidence": 0.8779377893907423,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.559928831174173
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          243,
+          828,
+          837
+        ],
+        "center": [
+          414.0,
+          661.5
+        ],
+        "confidence": 0.8732611292919849,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000275_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000280.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          887,
+          552,
+          72,
+          97
+        ],
+        "center": [
+          923.0,
+          600.5
+        ],
+        "center_norm": [
+          0.48072916666666665,
+          0.5560185185185185
+        ],
+        "confidence": 0.9057099179477325,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.001298945487384
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1594,
+          998,
+          57,
+          55
+        ],
+        "center": [
+          1622.5,
+          1025.5
+        ],
+        "confidence": 0.8732296650717704,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000280_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000285.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          823,
+          386,
+          72,
+          97
+        ],
+        "center": [
+          859.0,
+          434.5
+        ],
+        "center_norm": [
+          0.4473958333333333,
+          0.4023148148148148
+        ],
+        "confidence": 0.8471603253238061,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.553580530882631
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1594,
+          998,
+          57,
+          55
+        ],
+        "center": [
+          1622.5,
+          1025.5
+        ],
+        "confidence": 0.8736204146730463,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000285_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000290.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          915,
+          544,
+          72,
+          97
+        ],
+        "center": [
+          951.0,
+          592.5
+        ],
+        "center_norm": [
+          0.4953125,
+          0.5486111111111112
+        ],
+        "confidence": 0.8904258588248687,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.8947286631740194
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1594,
+          998,
+          57,
+          55
+        ],
+        "center": [
+          1622.5,
+          1025.5
+        ],
+        "confidence": 0.8737878787878788,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000290_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000295.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          927,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          963.0,
+          428.5
+        ],
+        "center_norm": [
+          0.5015625,
+          0.39675925925925926
+        ],
+        "confidence": 0.8719974022072288,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.751601545027069
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1825,
+          892,
+          29,
+          46
+        ],
+        "center": [
+          1839.5,
+          915.0
+        ],
+        "confidence": 0.5288774831334333,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000295_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000300.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1054,
+          356,
+          72,
+          97
+        ],
+        "center": [
+          1090.0,
+          404.5
+        ],
+        "center_norm": [
+          0.5677083333333334,
+          0.37453703703703706
+        ],
+        "confidence": 0.9132005831496728,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.0831111837993
+      },
+      "hsv_legacy": {
+        "bbox": [
+          649,
+          351,
+          178,
+          306
+        ],
+        "center": [
+          738.0,
+          504.0
+        ],
+        "confidence": 0.9155458250716018,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000300_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000305.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          981,
+          599,
+          29,
+          48
+        ],
+        "center": [
+          995.5,
+          623.0
+        ],
+        "center_norm": [
+          0.5184895833333333,
+          0.5768518518518518
+        ],
+        "confidence": 0.8122652595020913,
+        "region": "core",
+        "source_cue": "red",
+        "score": 5.157623046170691
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          449,
+          667,
+          631
+        ],
+        "center": [
+          333.5,
+          764.5
+        ],
+        "confidence": 0.7790800518916453,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000305_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000310.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1015,
+          604,
+          72,
+          97
+        ],
+        "center": [
+          1051.0,
+          652.5
+        ],
+        "center_norm": [
+          0.5473958333333333,
+          0.6041666666666666
+        ],
+        "confidence": 0.9221974605579435,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.183845373691011
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          791,
+          28,
+          63
+        ],
+        "center": [
+          14.0,
+          822.5
+        ],
+        "confidence": 0.46014831349206353,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000310_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000315.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          853,
+          526,
+          45,
+          83
+        ],
+        "center": [
+          875.5,
+          567.5
+        ],
+        "center_norm": [
+          0.45598958333333334,
+          0.5254629629629629
+        ],
+        "confidence": 0.8982548753071615,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.479716229967527
+      },
+      "hsv_legacy": {
+        "bbox": [
+          471,
+          436,
+          56,
+          21
+        ],
+        "center": [
+          499.0,
+          446.5
+        ],
+        "confidence": 0.33996875,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000315_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000320.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          1006,
+          702,
+          72,
+          97
+        ],
+        "center": [
+          1042.0,
+          750.5
+        ],
+        "center_norm": [
+          0.5427083333333333,
+          0.6949074074074074
+        ],
+        "confidence": 0.8486329651898805,
+        "region": "core",
+        "source_cue": "orange",
+        "score": 5.570977015300512
+      },
+      "hsv_legacy": {
+        "bbox": [
+          397,
+          627,
+          19,
+          30
+        ],
+        "center": [
+          406.5,
+          642.0
+        ],
+        "confidence": 0.43515158991228065,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000320_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000325.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          900,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          936.0,
+          428.5
+        ],
+        "center_norm": [
+          0.4875,
+          0.39675925925925926
+        ],
+        "confidence": 0.9492216919532609,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.3840113682064015
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1895,
+          868,
+          25,
+          113
+        ],
+        "center": [
+          1907.5,
+          924.5
+        ],
+        "confidence": 0.7475027654867257,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000325_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000330.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          835,
+          588,
+          26,
+          38
+        ],
+        "center": [
+          848.0,
+          607.0
+        ],
+        "center_norm": [
+          0.44166666666666665,
+          0.562037037037037
+        ],
+        "confidence": 0.9333777560170029,
+        "region": "core",
+        "source_cue": "red",
+        "score": 6.054681715553682
+      },
+      "hsv_legacy": {
+        "bbox": [
+          316,
+          880,
+          247,
+          46
+        ],
+        "center": [
+          439.5,
+          903.0
+        ],
+        "confidence": 0.9644978876958281,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000330_character_detect.png",
+      "notes": ""
+    },
+    {
+      "source": "frame_000335.png",
+      "hit": false,
+      "gt_center_norm": null,
+      "gt_expected_region": null,
+      "detected": {
+        "bbox": [
+          891,
+          572,
+          72,
+          97
+        ],
+        "center": [
+          927.0,
+          620.5
+        ],
+        "center_norm": [
+          0.4828125,
+          0.5745370370370371
+        ],
+        "confidence": 0.9416372492971281,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.344454011667412
+      },
+      "hsv_legacy": {
+        "bbox": [
+          694,
+          412,
+          48,
+          38
+        ],
+        "center": [
+          718.0,
+          431.0
+        ],
+        "confidence": 0.4189942434210526,
+        "label": "character"
+      },
+      "distance_to_gt": null,
+      "region_ok": null,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "C:\\Users\\Igor\\Projects\\street-rush-ai-1\\data\\debug\\session_20261030_185733\\character\\frame_000335_character_detect.png",
+      "notes": ""
+    }
+  ]
+}
