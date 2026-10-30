@@ -16,7 +16,6 @@ import numpy as np
 
 from src.config import (
     BOX_COLORS,
-    CAPTURE_IGNORE_NAMES,
     CAPTURES_DIR,
     DEBUG_DIR,
     OBJECT_BARRIER,
@@ -37,17 +36,26 @@ CLASS_ORDER = (
 
 
 def list_real_capture_frames(captures_dir: Path = CAPTURES_DIR) -> List[Path]:
-    """Lista PNGs reais em ``captures_dir``, ignorando sintéticos conhecidos."""
+    """Lista PNGs reais para análise offline.
+
+    Aceita:
+    - pasta ``frames/`` de uma sessão;
+    - pasta ``session_*`` (usa ``frames/``);
+    - pasta plana legada ``data/captures/*.png`` (compatibilidade).
+    """
+    from src.session import list_frame_images, list_legacy_capture_frames, list_session_frames
+
+    captures_dir = captures_dir.resolve()
     if not captures_dir.is_dir():
         return []
-    frames: List[Path] = []
-    for path in sorted(captures_dir.glob("*.png")):
-        if path.name in CAPTURE_IGNORE_NAMES:
-            continue
-        if path.name.startswith("synthetic"):
-            continue
-        frames.append(path)
-    return frames
+    if captures_dir.name == "frames" or (captures_dir / "frames").is_dir():
+        return list_session_frames(captures_dir)
+    # Raiz de captures: preferir legado plano; se vazio, não agrega todas as
+    # sessões (análise deve escolher --session para não misturar partidas).
+    legacy = list_legacy_capture_frames(captures_dir)
+    if legacy:
+        return legacy
+    return list_frame_images(captures_dir)
 
 
 def class_counts(result: VisionResult) -> dict[str, int]:

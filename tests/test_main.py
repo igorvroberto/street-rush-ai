@@ -131,6 +131,14 @@ def test_image_mode_no_preview(tmp_path: Path, capsys: pytest.CaptureFixture[str
     assert payload["frame_size"]["width"] == 160
 
 
+def _session_frame_pngs(root: Path) -> list[Path]:
+    from src.session import list_session_dirs
+
+    sessions = list_session_dirs(root)
+    assert len(sessions) >= 1
+    return sorted((sessions[-1] / "frames").glob("frame_*.png"))
+
+
 def test_save_every_creates_expected_files(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
@@ -150,10 +158,11 @@ def test_save_every_creates_expected_files(
             )
             code = run_capture_loop(args, captures_dir=tmp_path)
     assert code == 0
-    saved = sorted(tmp_path.glob("frame_*.png"))
+    saved = _session_frame_pngs(tmp_path)
     assert len(saved) == 2
     out = capsys.readouterr().out
     assert "save_every=30" in out
+    assert "Sessão exclusiva:" in out
     assert "Frame recebido" not in out  # trace desligado
     assert "cv2.imwrite retornou:" in out
 
@@ -169,7 +178,11 @@ def test_without_save_every_warns_and_saves_nothing(
             )
             code = run_capture_loop(args, captures_dir=tmp_path)
     assert code == 0
-    assert list(tmp_path.glob("frame_*.png")) == []
+    from src.session import list_session_dirs
+
+    sessions = list_session_dirs(tmp_path)
+    assert len(sessions) == 1
+    assert list((sessions[0] / "frames").glob("frame_*.png")) == []
     assert "AVISO CRÍTICO: save_every=0" in capsys.readouterr().out
 
 
@@ -215,7 +228,7 @@ def test_keyboard_interrupt_prints_summary(
     assert code == 0
     out = capsys.readouterr().out
     assert "RESUMO DA EXECUÇÃO" in out and "Ctrl+C" in out
-    assert len(list(tmp_path.glob("frame_*.png"))) == 2
+    assert len(_session_frame_pngs(tmp_path)) == 2
 
 
 def test_diag_capture_uses_mss_grab_not_synthetic(
@@ -228,13 +241,14 @@ def test_diag_capture_uses_mss_grab_not_synthetic(
             code = run_diag_capture(1, captures_dir=tmp_path)
     assert code == 0
     mock_sct.grab.assert_called()
-    saved = list(tmp_path.glob("frame_*.png"))
+    saved = _session_frame_pngs(tmp_path)
     assert len(saved) == 1
     out = capsys.readouterr().out
     assert "DIAG-CAPTURE" in out
     assert "Frame recebido | número=1" in out
     assert "cv2.imwrite retornou:" in out
     assert "synthetic_sample" not in out
+    assert "Sessão:" in out
 
 
 def test_print_run_summary_lists_paths(

@@ -96,7 +96,8 @@ def test_render_debug_cli_flag_no_live_capture(tmp_path: Path, monkeypatch: pyte
     _write_png(captures / "frame_000090_y.png", (25, 25, 25))
     monkeypatch.setattr("src.debug_render.CAPTURES_DIR", captures)
     monkeypatch.setattr("src.debug_render.DEBUG_DIR", debug)
-    # Também usados via import lazy em main → patch no módulo debug_render basta para run_debug_cli.
+    monkeypatch.setattr("src.main.CAPTURES_DIR", captures)
+    monkeypatch.setattr("src.main.DEBUG_DIR", debug)
     args = build_parser().parse_args(["--render-debug"])
     assert args.render_debug is True
 
