@@ -68,11 +68,18 @@ python -m src.main --session session_20261030_183000 --render-debug
 # Debug ROI
 python -m src.main --session session_20261030_183000 --render-roi-debug
 
-# Debug do detector de personagem
+# Debug do detector de personagem (baseline = versão atual)
 python -m src.main --session session_20261030_183000 --render-character-debug
+
+# Variante experimental (penaliza painéis homogêneos + exige multi-cor)
+python -m src.main --session session_20261030_185733 --render-character-debug --character-variant experimental
+
+# Comparar baseline vs experimental na mesma sessão
+python -m src.main --session session_20261030_185733 --render-character-debug --character-variant compare
 ```
 
 Os resultados vão para `data/debug/session_.../{hsv,roi,character}/` — **não misturam** partidas.
+No modo `compare`, as saídas ficam em `character/baseline/` e `character/experimental/`, com `character_variant_compare.json`.
 
 ### Compatibilidade com frames antigos
 
@@ -185,7 +192,7 @@ Inclui: duas execuções criam sessões distintas sem sobrescrita; `metadata.jso
 ## Visão e estado
 
 - `vision.py`: personagem HSV legado, caminhões, barreiras, moedas.
-- `character.py`: detector de personagem na ROI (independente do HSV legado).
+- `character.py`: detector de personagem na ROI (independente do HSV legado). Variantes `baseline` (atual) e `experimental` (anti-painel homogêneo + combinação de cores); use `--character-variant`.
 - `game_state.py`: distância (fluxo óptico), posição, obstáculos relativos.
 
 ## Restrições
