@@ -10,14 +10,18 @@ import pytest
 
 from src.character import (
     CharacterDetector,
+    CharacterDetectorConfig,
     center_distance_norm,
     detection_hits_ground_truth,
+    make_character_detector,
 )
 from src.character_debug import load_ground_truth, run_character_debug
 from src.config import (
     CAPTURES_DIR,
     CHARACTER_DEBUG_DIR,
     CHARACTER_HIT_MAX_DISTANCE,
+    CHARACTER_VARIANT_BASELINE,
+    CHARACTER_VARIANT_EXPERIMENTAL,
     ROI_CORE_NORMALIZED,
     ROI_SOFT_NORMALIZED,
 )
@@ -184,3 +188,86 @@ def test_ground_truth_lists_ten_frames() -> None:
 def test_center_distance_norm() -> None:
     assert center_distance_norm((0.5, 0.5), (0.5, 0.5)) == pytest.approx(0.0)
     assert center_distance_norm((0.0, 0.0), (0.3, 0.4)) == pytest.approx(0.5)
+
+
+def test_default_detector_is_baseline() -> None:
+    assert CharacterDetector().variant == CHARACTER_VARIANT_BASELINE
+    assert make_character_detector().variant == CHARACTER_VARIANT_BASELINE
+
+
+def test_make_character_detector_rejects_unknown_variant() -> None:
+    with pytest.raises(ValueError):
+        make_character_detector("desconhecida")
+
+
+def _paint_playable(frame: np.ndarray) -> None:
+    _, _, playable = build_roi_masks(frame.shape[1], frame.shape[0])
+    frame[playable > 0] = (55, 55, 55)
+
+
+def test_experimental_rejects_homogeneous_single_color_panel() -> None:
+    """Container/painel azul plano (FP típico do holdout) não deve passar no experimental."""
+    h, w = 1080, 1920
+    frame = np.zeros((h, w, 3), dtype=np.uint8)
+    _paint_playable(frame)
+    # Painel homogêneo grande no núcleo (simulando container).
+    cv2.rectangle(frame, (880, 620), (1040, 820), (210, 120, 40), -1)
+
+    baseline = make_character_detector(CHARACTER_VARIANT_BASELINE)
+    experimental = make_character_detector(CHARACTER_VARIANT_EXPERIMENTAL)
+    base_det = baseline.detect(frame, use_temporal=False)
+    exp_det = experimental.detect(frame, use_temporal=False)
+
+    # Baseline pode ainda grudar no painel (comportamento conhecido).
+    assert base_det is not None
+    # Experimental deve rejeitar painel plano mono-cor.
+    assert exp_det is None
+
+
+def test_experimental_keeps_multicolor_textured_avatar() -> None:
+    """Avatar azul + capa vermelha com variação de tom permanece detectável."""
+    h, w = 1080, 1920
+    frame = np.zeros((h, w, 3), dtype=np.uint8)
+    _paint_playable(frame)
+    cx, cy = 960, 720
+    # Corpo azul com leve variação (textura).
+    for i, shade in enumerate((200, 220, 235, 210)):
+        cv2.ellipse(
+            frame,
+            (cx, cy - i * 2),
+            (26 - i, 46 - i),
+            0,
+            0,
+            360,
+            (shade, 110 + i * 5, 35 + i * 3),
+            -1,
+        )
+    # Capa/cachecol vermelho
+    cv2.rectangle(frame, (cx - 8, cy - 5), (cx + 8, cy + 40), (35, 35, 210), -1)
+    cv2.rectangle(frame, (cx - 6, cy + 10), (cx + 6, cy + 38), (50, 50, 180), -1)
+    # Detalhe laranja/claro no capacete
+    cv2.circle(frame, (cx, cy - 28), 8, (40, 140, 230), -1)
+
+    result = make_character_detector(CHARACTER_VARIANT_EXPERIMENTAL).detect(
+        frame, use_temporal=False
+    )
+    assert result is not None
+    assert result.variant == CHARACTER_VARIANT_EXPERIMENTAL
+    assert result.color_cues >= 2
+    assert abs(result.center[0] - cx) < 90
+    assert abs(result.center[1] - cy) < 110
+
+
+def test_baseline_unchanged_on_simple_blue_avatar() -> None:
+    """Sanidade: baseline continua detectando o blob azul compacto dos testes atuais."""
+    h, w = 1080, 1920
+    frame = np.zeros((h, w, 3), dtype=np.uint8)
+    _paint_playable(frame)
+    cx, cy = 960, 720
+    cv2.ellipse(frame, (cx, cy), (28, 48), 0, 0, 360, (220, 120, 40), -1)
+    cv2.rectangle(frame, (cx - 6, cy - 10), (cx + 6, cy + 35), (40, 40, 220), -1)
+    result = CharacterDetector(CharacterDetectorConfig(variant=CHARACTER_VARIANT_BASELINE)).detect(
+        frame, use_temporal=False
+    )
+    assert result is not None
+    assert result.variant == CHARACTER_VARIANT_BASELINE

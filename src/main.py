@@ -189,6 +189,17 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--character-variant",
+        type=str,
+        default="baseline",
+        choices=("baseline", "experimental", "compare"),
+        help=(
+            "Variante do detector de personagem para --render-character-debug: "
+            "baseline (atual), experimental (anti-painel + multi-cor), "
+            "compare (roda as duas e gera relatório lado a lado)."
+        ),
+    )
+    parser.add_argument(
         "--output-dir",
         type=str,
         default=None,
@@ -827,7 +838,11 @@ def main(argv: list[str] | None = None) -> int:
         from src.character_debug import run_character_debug_cli
 
         char_dir = debug_root / "character" if _session_paths else (debug_root / "character")
-        return run_character_debug_cli(captures_dir=frames_dir, out_dir=char_dir)
+        return run_character_debug_cli(
+            captures_dir=frames_dir,
+            out_dir=char_dir,
+            variant=str(getattr(args, "character_variant", "baseline")),
+        )
 
     if args.image:
         return analyze_image(Path(args.image), show_preview=bool(args.preview))

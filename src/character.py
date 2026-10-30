@@ -4,6 +4,11 @@ Não altera a geometria da ROI nem os detectores HSV de truck/barrier/coin.
 O blob HSV ``character`` legado em ``VisionAnalyzer`` permanece disponível
 apenas para comparação — este módulo não o usa como verdade de referência.
 
+Variantes:
+- ``baseline`` — scoring atual (referência para comparação).
+- ``experimental`` — penaliza painéis homogêneos e exige combinação de cores
+  (ou textura) para reduzir FPs em containers/caminhões/UI plana.
+
 Sinais visuais do avatar (frames reais + character_audit):
 - aura/escudo azul-ciano frequente;
 - capacete/camiseta azul-teal;
@@ -27,6 +32,16 @@ from src.config import (
     CHARACTER_BLUE_HSV,
     CHARACTER_CONF_MIN,
     CHARACTER_CYAN_HSV,
+    CHARACTER_EXP_BLUE_FRAC,
+    CHARACTER_EXP_EDGE_VAR_MIN,
+    CHARACTER_EXP_FLAT_EDGE_PENALTY,
+    CHARACTER_EXP_HOMOGENEITY_PENALTY,
+    CHARACTER_EXP_HOMOGENEITY_V_STD_MIN,
+    CHARACTER_EXP_MIN_COLOR_CUES,
+    CHARACTER_EXP_MULTI_CUE_BONUS,
+    CHARACTER_EXP_ORANGE_FRAC,
+    CHARACTER_EXP_RED_FRAC,
+    CHARACTER_EXP_SINGLE_CUE_PENALTY,
     CHARACTER_MAX_WIDTH_FRAC,
     CHARACTER_MIN_AREA,
     CHARACTER_ORANGE_HSV,
@@ -34,6 +49,9 @@ from src.config import (
     CHARACTER_RED_HSV_LOW,
     CHARACTER_TARGET_HEIGHT_FRAC,
     CHARACTER_TARGET_WIDTH_FRAC,
+    CHARACTER_VARIANT_BASELINE,
+    CHARACTER_VARIANT_DEFAULT,
+    CHARACTER_VARIANT_EXPERIMENTAL,
     OBJECT_CHARACTER,
 )
 from src.roi import RegionName, build_roi_masks, point_region
@@ -56,6 +74,9 @@ class CharacterDetection:
     source_cue: str  # blue | orange | red
     score: float
     center_norm: PointNorm
+    color_cues: int = 1
+    texture_v_std: float = 0.0
+    variant: str = CHARACTER_VARIANT_BASELINE
 
     def as_detected_object(self) -> DetectedObject:
         return DetectedObject(
@@ -85,6 +106,36 @@ class CharacterDetectorConfig:
     lane_x: float = 0.50
     lane_sigma: float = 0.14  # permite mudança de faixa
     temporal_sigma: float = 0.12
+    # baseline | experimental
+    variant: str = CHARACTER_VARIANT_DEFAULT
+    # Knobs só usados na variante experimental.
+    exp_blue_frac: float = CHARACTER_EXP_BLUE_FRAC
+    exp_orange_frac: float = CHARACTER_EXP_ORANGE_FRAC
+    exp_red_frac: float = CHARACTER_EXP_RED_FRAC
+    exp_min_color_cues: int = CHARACTER_EXP_MIN_COLOR_CUES
+    exp_homogeneity_v_std_min: float = CHARACTER_EXP_HOMOGENEITY_V_STD_MIN
+    exp_edge_var_min: float = CHARACTER_EXP_EDGE_VAR_MIN
+    exp_homogeneity_penalty: float = CHARACTER_EXP_HOMOGENEITY_PENALTY
+    exp_flat_edge_penalty: float = CHARACTER_EXP_FLAT_EDGE_PENALTY
+    exp_single_cue_penalty: float = CHARACTER_EXP_SINGLE_CUE_PENALTY
+    exp_multi_cue_bonus: float = CHARACTER_EXP_MULTI_CUE_BONUS
+
+
+def make_character_detector(
+    variant: str = CHARACTER_VARIANT_DEFAULT,
+    *,
+    config: Optional[CharacterDetectorConfig] = None,
+) -> CharacterDetector:
+    """Fabrica o detector na variante pedida (baseline permanece o padrão)."""
+    v = str(variant or CHARACTER_VARIANT_DEFAULT).strip().lower()
+    if v not in (CHARACTER_VARIANT_BASELINE, CHARACTER_VARIANT_EXPERIMENTAL):
+        raise ValueError(
+            f"Variante inválida {variant!r}; use "
+            f"{CHARACTER_VARIANT_BASELINE!r} ou {CHARACTER_VARIANT_EXPERIMENTAL!r}"
+        )
+    cfg = config or CharacterDetectorConfig()
+    cfg.variant = v
+    return CharacterDetector(cfg)
 
 
 class CharacterDetector:
@@ -93,6 +144,10 @@ class CharacterDetector:
     def __init__(self, config: Optional[CharacterDetectorConfig] = None) -> None:
         self.config = config or CharacterDetectorConfig()
         self._prev_center_norm: Optional[PointNorm] = None
+
+    @property
+    def variant(self) -> str:
+        return str(self.config.variant)
 
     def reset_temporal(self) -> None:
         """Limpa continuidade entre frames (útil em batch offline)."""
@@ -131,6 +186,7 @@ class CharacterDetector:
         for source, mask in (("blue", blue_m), ("orange", orange), ("red", red)):
             candidates.extend(
                 self._candidates_from_mask(
+                    frame=frame,
                     mask=mask,
                     playable=playable,
                     core=core,
@@ -145,18 +201,17 @@ class CharacterDetector:
             )
 
         if not candidates:
-            logger.debug("character: nenhum candidato na ROI")
-            if not use_temporal:
-                pass
-            else:
-                # Não zera o temporal imediatamente — miss isolado.
-                pass
+            logger.debug("character(%s): nenhum candidato na ROI", self.variant)
             return None
 
         candidates.sort(key=lambda c: c["score"], reverse=True)
         best = candidates[0]
         if best["score"] < 2.5:
-            logger.debug("character: melhor score baixo (%.2f)", best["score"])
+            logger.debug(
+                "character(%s): melhor score baixo (%.2f)",
+                self.variant,
+                best["score"],
+            )
             return None
 
         margin = best["score"] - (candidates[1]["score"] if len(candidates) > 1 else 0.0)
@@ -174,12 +229,18 @@ class CharacterDetector:
             source_cue=best["source"],
             score=float(best["score"]),
             center_norm=best["center_norm"],
+            color_cues=int(best.get("color_cues", 1)),
+            texture_v_std=float(best.get("texture_v_std", 0.0)),
+            variant=self.variant,
         )
         if use_temporal:
             self._prev_center_norm = det.center_norm
         logger.debug(
-            "character: cue=%s region=%s conf=%.2f bbox=%s",
+            "character(%s): cue=%s cues=%d v_std=%.1f region=%s conf=%.2f bbox=%s",
+            det.variant,
             det.source_cue,
+            det.color_cues,
+            det.texture_v_std,
             det.region,
             det.confidence,
             det.bbox,
@@ -189,6 +250,7 @@ class CharacterDetector:
     def _candidates_from_mask(
         self,
         *,
+        frame: np.ndarray,
         mask: np.ndarray,
         playable: np.ndarray,
         core: np.ndarray,
@@ -204,6 +266,7 @@ class CharacterDetector:
         cfg = self.config
         fa = float(h * w)
         min_a = cfg.min_area if source != "red" else max(40, cfg.min_area // 2)
+        experimental = cfg.variant == CHARACTER_VARIANT_EXPERIMENTAL
 
         m = cv2.bitwise_and(mask, playable)
         k5 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
@@ -236,9 +299,27 @@ class CharacterDetector:
                 nx, ny = cx / w, cy / h
                 xa, ya = max(0, x2), max(0, y2)
                 xb, yb = min(w, x2 + bw2), min(h, y2 + bh2)
-                bf = float((blue_m[ya:yb, xa:xb] > 0).mean()) if xb > xa and yb > ya else 0.0
-                of = float((orange[ya:yb, xa:xb] > 0).mean()) if xb > xa and yb > ya else 0.0
-                rf = float((red[ya:yb, xa:xb] > 0).mean()) if xb > xa and yb > ya else 0.0
+                if xb <= xa or yb <= ya:
+                    continue
+                bf = float((blue_m[ya:yb, xa:xb] > 0).mean())
+                of = float((orange[ya:yb, xa:xb] > 0).mean())
+                rf = float((red[ya:yb, xa:xb] > 0).mean())
+                v_std, edge_var = _patch_texture_stats(frame, xa, ya, xb, yb)
+                color_cues = _count_color_cues(
+                    bf,
+                    of,
+                    rf,
+                    blue_frac=cfg.exp_blue_frac,
+                    orange_frac=cfg.exp_orange_frac,
+                    red_frac=cfg.exp_red_frac,
+                )
+
+                # Experimental: rejeita painel plano + cor única (container/caminhão/UI).
+                if experimental:
+                    flat = v_std < cfg.exp_homogeneity_v_std_min
+                    if flat and color_cues < cfg.exp_min_color_cues:
+                        continue
+
                 score = self._score_candidate(
                     nx=nx,
                     ny=ny,
@@ -251,6 +332,9 @@ class CharacterDetector:
                     size_frac=(bw2 * bh2) / fa,
                     source=source,
                     prev=prev,
+                    color_cues=color_cues,
+                    v_std=v_std,
+                    edge_var=edge_var,
                 )
                 out.append(
                     {
@@ -260,6 +344,8 @@ class CharacterDetector:
                         "region": region,
                         "source": source,
                         "center_norm": (nx, ny),
+                        "color_cues": color_cues,
+                        "texture_v_std": v_std,
                     }
                 )
         return out
@@ -309,7 +395,57 @@ class CharacterDetector:
         size_frac: float,
         source: str,
         prev: Optional[PointNorm],
+        color_cues: int = 1,
+        v_std: float = 0.0,
+        edge_var: float = 0.0,
     ) -> float:
+        if self.config.variant == CHARACTER_VARIANT_EXPERIMENTAL:
+            return self._score_candidate_experimental(
+                nx=nx,
+                ny=ny,
+                aspect=aspect,
+                region=region,
+                bf=bf,
+                of=of,
+                rf=rf,
+                dens=dens,
+                size_frac=size_frac,
+                source=source,
+                prev=prev,
+                color_cues=color_cues,
+                v_std=v_std,
+                edge_var=edge_var,
+            )
+        return self._score_candidate_baseline(
+            nx=nx,
+            ny=ny,
+            aspect=aspect,
+            region=region,
+            bf=bf,
+            of=of,
+            rf=rf,
+            dens=dens,
+            size_frac=size_frac,
+            source=source,
+            prev=prev,
+        )
+
+    def _score_candidate_baseline(
+        self,
+        *,
+        nx: float,
+        ny: float,
+        aspect: float,
+        region: RegionName,
+        bf: float,
+        of: float,
+        rf: float,
+        dens: float,
+        size_frac: float,
+        source: str,
+        prev: Optional[PointNorm],
+    ) -> float:
+        """Scoring da versão atual (referência) — não alterar o comportamento."""
         cfg = self.config
         score = 0.0
         score += 2.1 * bf + 1.3 * of + 1.5 * min(rf, 0.35)
@@ -332,6 +468,102 @@ class CharacterDetector:
         if source == "red" and rf > 0.08:
             score += 0.35
         return float(score)
+
+    def _score_candidate_experimental(
+        self,
+        *,
+        nx: float,
+        ny: float,
+        aspect: float,
+        region: RegionName,
+        bf: float,
+        of: float,
+        rf: float,
+        dens: float,
+        size_frac: float,
+        source: str,
+        prev: Optional[PointNorm],
+        color_cues: int,
+        v_std: float,
+        edge_var: float,
+    ) -> float:
+        """Experimental: menos peso em cor única; multi-cue + textura; penaliza painel."""
+        cfg = self.config
+        score = 0.0
+        # Pesos mais equilibrados — evita caminhão/container mono-cor dominar.
+        score += 1.35 * bf + 1.35 * of + 1.35 * min(rf, 0.35)
+        score += 1.15 * float(np.exp(-((nx - cfg.lane_x) ** 2) / (2 * cfg.lane_sigma**2)))
+        score += 0.85 * float(np.exp(-((aspect - 1.55) ** 2) / (2 * 0.8**2)))
+        run_p = float(np.exp(-((ny - cfg.run_y) ** 2) / (2 * cfg.run_y_sigma**2)))
+        jump_p = float(np.exp(-((ny - cfg.jump_y) ** 2) / (2 * cfg.jump_y_sigma**2)))
+        score += 1.0 * max(run_p, jump_p)
+        score += 0.30 if region == "core" else 0.28
+        if 0.0004 <= size_frac <= 0.022:
+            score += 0.55
+        if size_frac > 0.03:
+            score -= 1.5
+        score += 0.25 * min(float(dens), 1.0)
+        if prev is not None:
+            d = float(np.hypot(nx - prev[0], ny - prev[1]))
+            score += 0.9 * float(np.exp(-(d**2) / (2 * cfg.temporal_sigma**2)))
+
+        if color_cues >= cfg.exp_min_color_cues:
+            score += cfg.exp_multi_cue_bonus * float(color_cues - 1)
+        else:
+            score -= cfg.exp_single_cue_penalty
+
+        if v_std < cfg.exp_homogeneity_v_std_min:
+            score -= cfg.exp_homogeneity_penalty
+        else:
+            # Textura típica de avatar (roupas/face) — bônus suave.
+            score += 0.35 * min(v_std / 40.0, 1.0)
+
+        if edge_var < cfg.exp_edge_var_min:
+            score -= cfg.exp_flat_edge_penalty
+        else:
+            score += 0.25 * min(edge_var / 400.0, 1.0)
+
+        # Domínio extremo de uma só cor ainda é suspeito.
+        dominant = max(bf, of, rf)
+        others = (bf + of + rf) - dominant
+        if dominant > 0.25 and others < 0.03:
+            score -= 1.2
+
+        if source == "blue" and bf > 0.12 and color_cues >= 2:
+            score += 0.25
+        if source == "red" and rf > 0.08 and color_cues >= 2:
+            score += 0.2
+        return float(score)
+
+
+def _count_color_cues(
+    bf: float,
+    of: float,
+    rf: float,
+    *,
+    blue_frac: float,
+    orange_frac: float,
+    red_frac: float,
+) -> int:
+    return int(bf >= blue_frac) + int(of >= orange_frac) + int(rf >= red_frac)
+
+
+def _patch_texture_stats(
+    frame_bgr: np.ndarray,
+    xa: int,
+    ya: int,
+    xb: int,
+    yb: int,
+) -> Tuple[float, float]:
+    """Retorna (std do canal V, variância do Laplaciano) na janela."""
+    patch = frame_bgr[ya:yb, xa:xb]
+    if patch.size == 0 or patch.shape[0] < 2 or patch.shape[1] < 2:
+        return 0.0, 0.0
+    hsv = cv2.cvtColor(patch, cv2.COLOR_BGR2HSV)
+    v_std = float(hsv[:, :, 2].std())
+    gray = cv2.cvtColor(patch, cv2.COLOR_BGR2GRAY)
+    edge_var = float(cv2.Laplacian(gray, cv2.CV_64F).var())
+    return v_std, edge_var
 
 
 def _in_range(hsv: np.ndarray, bounds: Tuple[Tuple[int, int, int], Tuple[int, int, int]]) -> np.ndarray:
@@ -369,4 +601,5 @@ __all__ = [
     "CharacterDetectorConfig",
     "center_distance_norm",
     "detection_hits_ground_truth",
+    "make_character_detector",
 ]

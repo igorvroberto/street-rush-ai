@@ -88,6 +88,24 @@ CHARACTER_CONF_MIN = 0.35
 # Acerto vs GT (centro do corpo, normalizado).
 CHARACTER_HIT_MAX_DISTANCE = 0.06
 
+# Variantes do detector: baseline (atual) vs experimental (painéis / multi-cor).
+CHARACTER_VARIANT_BASELINE = "baseline"
+CHARACTER_VARIANT_EXPERIMENTAL = "experimental"
+CHARACTER_VARIANT_DEFAULT = CHARACTER_VARIANT_BASELINE
+# Experimental: frações mínimas para contar um cue de cor na janela.
+# Limiares mais altos que o ruído de asfalto/UI — combinação real de peças do avatar.
+CHARACTER_EXP_BLUE_FRAC = 0.05
+CHARACTER_EXP_ORANGE_FRAC = 0.03
+CHARACTER_EXP_RED_FRAC = 0.03
+CHARACTER_EXP_MIN_COLOR_CUES = 2
+# Painel homogêneo: desvio-padrão do canal V e variância do Laplaciano.
+CHARACTER_EXP_HOMOGENEITY_V_STD_MIN = 16.0
+CHARACTER_EXP_EDGE_VAR_MIN = 100.0
+CHARACTER_EXP_HOMOGENEITY_PENALTY = 2.8
+CHARACTER_EXP_FLAT_EDGE_PENALTY = 1.6
+CHARACTER_EXP_SINGLE_CUE_PENALTY = 2.4
+CHARACTER_EXP_MULTI_CUE_BONUS = 1.0
+
 # Arquivo-sentinela: se existir, o loop salva um frame e remove o arquivo.
 # Funciona mesmo com o Last War em primeiro plano (sem roubar foco).
 SAVE_REQUEST_FILE = CAPTURES_DIR / ".save_now"

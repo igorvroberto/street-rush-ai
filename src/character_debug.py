@@ -19,11 +19,15 @@ from src.character import (
     CharacterDetector,
     center_distance_norm,
     detection_hits_ground_truth,
+    make_character_detector,
 )
 from src.config import (
     CAPTURES_DIR,
     CHARACTER_DEBUG_DIR,
     CHARACTER_HIT_MAX_DISTANCE,
+    CHARACTER_VARIANT_BASELINE,
+    CHARACTER_VARIANT_DEFAULT,
+    CHARACTER_VARIANT_EXPERIMENTAL,
     ROI_CORE_NORMALIZED,
     ROI_SOFT_NORMALIZED,
 )
@@ -88,6 +92,9 @@ def _det_to_dict(det: Optional[CharacterDetection], width: int, height: int) -> 
         "region": det.region,
         "source_cue": det.source_cue,
         "score": det.score,
+        "color_cues": det.color_cues,
+        "texture_v_std": det.texture_v_std,
+        "variant": det.variant,
     }
 
 
@@ -260,6 +267,7 @@ def run_character_debug(
     out_dir: Path = CHARACTER_DEBUG_DIR,
     ground_truth_path: Path = GROUND_TRUTH_PATH,
     use_temporal: bool = False,
+    variant: str = CHARACTER_VARIANT_DEFAULT,
 ) -> dict[str, Any]:
     """Processa os frames reais, grava PNGs de comparação e relatório JSON."""
     out_dir = out_dir.resolve()
@@ -276,7 +284,7 @@ def run_character_debug(
         )
 
     frames = list_real_capture_frames(captures_dir)
-    detector = CharacterDetector()
+    detector = make_character_detector(variant)
     vision = VisionAnalyzer()
     reports: List[FrameCharacterReport] = []
 
@@ -321,9 +329,11 @@ def run_character_debug(
         "hit_rate": (hits / with_gt) if with_gt else None,
         "hit_max_distance": CHARACTER_HIT_MAX_DISTANCE,
         "use_temporal": use_temporal,
+        "variant": detector.variant,
         "note": (
             "Acerto = distância do centro DETECTADO ao REAL (corpo) ≤ limiar. "
-            "Não conta sucesso só por região central. HSV legado só para comparação."
+            "Não conta sucesso só por região central. HSV legado só para comparação. "
+            "baseline = scoring atual; experimental = anti-painel + multi-cor."
         ),
         "frames": [asdict(r) for r in reports],
     }
@@ -333,23 +343,117 @@ def run_character_debug(
     return summary
 
 
-def run_character_debug_cli(
+def run_character_variant_compare(
     *,
-    captures_dir: Optional[Path] = None,
-    out_dir: Optional[Path] = None,
-    ground_truth_path: Optional[Path] = None,
-) -> int:
-    summary = run_character_debug(
-        captures_dir=captures_dir or CAPTURES_DIR,
-        out_dir=out_dir or CHARACTER_DEBUG_DIR,
-        ground_truth_path=ground_truth_path or GROUND_TRUTH_PATH,
+    captures_dir: Path = CAPTURES_DIR,
+    out_dir: Path = CHARACTER_DEBUG_DIR,
+    ground_truth_path: Path = GROUND_TRUTH_PATH,
+    use_temporal: bool = False,
+) -> dict[str, Any]:
+    """Roda baseline e experimental lado a lado para comparação offline."""
+    out_dir = out_dir.resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    baseline = run_character_debug(
+        captures_dir=captures_dir,
+        out_dir=out_dir / "baseline",
+        ground_truth_path=ground_truth_path,
+        use_temporal=use_temporal,
+        variant=CHARACTER_VARIANT_BASELINE,
     )
+    experimental = run_character_debug(
+        captures_dir=captures_dir,
+        out_dir=out_dir / "experimental",
+        ground_truth_path=ground_truth_path,
+        use_temporal=use_temporal,
+        variant=CHARACTER_VARIANT_EXPERIMENTAL,
+    )
+
+    base_by_src = {fr["source"]: fr for fr in baseline["frames"]}
+    exp_by_src = {fr["source"]: fr for fr in experimental["frames"]}
+    sources = sorted(set(base_by_src) | set(exp_by_src))
+    per_frame: List[dict[str, Any]] = []
+    agree_both_hit = 0
+    disagree = 0
+    only_baseline = 0
+    only_experimental = 0
+    for src in sources:
+        b = base_by_src.get(src)
+        e = exp_by_src.get(src)
+        b_det = (b or {}).get("detected")
+        e_det = (e or {}).get("detected")
+        b_found = b_det is not None
+        e_found = e_det is not None
+        same_box = False
+        if b_found and e_found:
+            same_box = list(b_det["bbox"]) == list(e_det["bbox"])
+            if (b or {}).get("hit") and (e or {}).get("hit"):
+                agree_both_hit += 1
+            if bool((b or {}).get("hit")) != bool((e or {}).get("hit")) or not same_box:
+                disagree += 1
+        elif b_found and not e_found:
+            only_baseline += 1
+            disagree += 1
+        elif e_found and not b_found:
+            only_experimental += 1
+            disagree += 1
+        per_frame.append(
+            {
+                "source": src,
+                "baseline": {
+                    "found": b_found,
+                    "hit": (b or {}).get("hit"),
+                    "detected": b_det,
+                },
+                "experimental": {
+                    "found": e_found,
+                    "hit": (e or {}).get("hit"),
+                    "detected": e_det,
+                },
+                "same_bbox": same_box,
+            }
+        )
+
+    compare = {
+        "mode": "compare",
+        "frames_total": len(sources),
+        "baseline": {
+            k: v
+            for k, v in baseline.items()
+            if k not in {"frames", "report_path"}
+        },
+        "experimental": {
+            k: v
+            for k, v in experimental.items()
+            if k not in {"frames", "report_path"}
+        },
+        "agreement": {
+            "both_hit_when_gt": agree_both_hit,
+            "disagree_or_different_box": disagree,
+            "only_baseline_detection": only_baseline,
+            "only_experimental_detection": only_experimental,
+        },
+        "baseline_report_path": baseline.get("report_path"),
+        "experimental_report_path": experimental.get("report_path"),
+        "frames": per_frame,
+        "note": (
+            "Compare offline: baseline (atual) vs experimental "
+            "(penaliza painéis homogêneos + exige combinação de cores/textura)."
+        ),
+    }
+    report_path = out_dir / "character_variant_compare.json"
+    report_path.write_text(json.dumps(compare, indent=2, ensure_ascii=False), encoding="utf-8")
+    compare["report_path"] = str(report_path)
+    return compare
+
+
+def _print_debug_summary(summary: dict[str, Any], out_resolved: Path) -> int:
     print(json.dumps({k: v for k, v in summary.items() if k != "frames"}, indent=2, ensure_ascii=False))
     print("--- por frame ---")
     for fr in summary["frames"]:
         det = fr.get("detected")
         det_s = (
             f"reg={det['region']} conf={det['confidence']:.2f} cue={det['source_cue']} "
+            f"cues={det.get('color_cues', '?')} v_std={det.get('texture_v_std', 0):.1f} "
             f"c=({det['center_norm'][0]:.3f},{det['center_norm'][1]:.3f})"
             if det
             else "NONE"
@@ -358,16 +462,72 @@ def run_character_debug_cli(
             f"{fr['source']}: hit={fr['hit']} d={fr['distance_to_gt']} "
             f"FP={fr['false_positive']} FN={fr['false_negative']} | {det_s}"
         )
-    out_resolved = Path(out_dir or CHARACTER_DEBUG_DIR).resolve()
     print(f"Relatório: {summary.get('report_path')}")
     print(f"Imagens: {out_resolved}")
+    print(f"Variante: {summary.get('variant', CHARACTER_VARIANT_DEFAULT)}")
     hits = summary["hits"]
     total = summary["frames_with_gt"]
     print(f"Resultado: {hits}/{total} localizações corretas")
-    # Sem GT (sessão nova): sucesso operacional se processou frames.
     if total == 0:
         return 0 if summary["frames_total"] >= 0 else 1
     return 0 if hits == total else 1
+
+
+def run_character_debug_cli(
+    *,
+    captures_dir: Optional[Path] = None,
+    out_dir: Optional[Path] = None,
+    ground_truth_path: Optional[Path] = None,
+    variant: str = CHARACTER_VARIANT_DEFAULT,
+) -> int:
+    captures = captures_dir or CAPTURES_DIR
+    out_resolved = Path(out_dir or CHARACTER_DEBUG_DIR).resolve()
+    gt_path = ground_truth_path or GROUND_TRUTH_PATH
+    mode = str(variant or CHARACTER_VARIANT_DEFAULT).strip().lower()
+
+    if mode == "compare":
+        compare = run_character_variant_compare(
+            captures_dir=captures,
+            out_dir=out_resolved,
+            ground_truth_path=gt_path,
+        )
+        print(
+            json.dumps(
+                {k: v for k, v in compare.items() if k != "frames"},
+                indent=2,
+                ensure_ascii=False,
+            )
+        )
+        print("--- divergências (amostra) ---")
+        shown = 0
+        for fr in compare["frames"]:
+            if fr["same_bbox"] and fr["baseline"]["found"] == fr["experimental"]["found"]:
+                if fr["baseline"].get("hit") == fr["experimental"].get("hit"):
+                    continue
+            b = fr["baseline"]["detected"]
+            e = fr["experimental"]["detected"]
+            b_s = "NONE" if not b else f"{b['source_cue']}@{b['bbox']}"
+            e_s = (
+                "NONE"
+                if not e
+                else f"{e['source_cue']} cues={e.get('color_cues')}@{e['bbox']}"
+            )
+            print(f"{fr['source']}: baseline={b_s} | experimental={e_s}")
+            shown += 1
+            if shown >= 25:
+                break
+        print(f"Compare report: {compare.get('report_path')}")
+        print(f"baseline imgs: {out_resolved / 'baseline'}")
+        print(f"experimental imgs: {out_resolved / 'experimental'}")
+        return 0
+
+    summary = run_character_debug(
+        captures_dir=captures,
+        out_dir=out_resolved,
+        ground_truth_path=gt_path,
+        variant=mode,
+    )
+    return _print_debug_summary(summary, out_resolved)
 
 
 __all__ = [
@@ -377,4 +537,6 @@ __all__ = [
     "render_character_compare",
     "run_character_debug",
     "run_character_debug_cli",
+    "run_character_variant_compare",
 ]
+
