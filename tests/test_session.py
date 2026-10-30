@@ -142,6 +142,8 @@ def test_two_capture_loops_create_isolated_sessions(tmp_path: Path) -> None:
                     "--stats-interval",
                     "0",
                     "--no-trace-frames",
+                    "--startup-delay",
+                    "0",
                 ]
             )
             assert run_capture_loop(args, captures_dir=tmp_path) == 0
@@ -167,9 +169,12 @@ def test_two_capture_loops_create_isolated_sessions(tmp_path: Path) -> None:
 
 def test_diag_capture_writes_into_session_frames(tmp_path: Path) -> None:
     mock_sct, bgra = _mock_monitor_bgra(h=50, w=80)
+    args = build_parser().parse_args(
+        ["--diag-capture", "--monitor", "1", "--startup-delay", "0"]
+    )
     with patch("src.screen_capture.mss.mss", return_value=mock_sct):
         with patch("src.screen_capture.np.asarray", return_value=bgra):
-            code = run_diag_capture(1, captures_dir=tmp_path)
+            code = run_diag_capture(1, captures_dir=tmp_path, args=args)
     assert code == 0
     sessions = list_session_dirs(tmp_path)
     assert len(sessions) == 1
@@ -178,3 +183,4 @@ def test_diag_capture_writes_into_session_frames(tmp_path: Path) -> None:
     meta = json.loads((sessions[0] / "metadata.json").read_text(encoding="utf-8"))
     assert meta["frames_saved"] == 1
     assert meta["resolution"] == {"width": 80, "height": 50}
+    assert meta["parameters"]["startup_delay_sec"] == 0.0

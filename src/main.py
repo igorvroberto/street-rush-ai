@@ -37,6 +37,7 @@ from src.config import (  # noqa: E402
     SAVE_EVERY_N_FRAMES,
     SAVE_INTERVAL_SEC,
     SAVE_REQUEST_FILE,
+    STARTUP_DELAY_SEC,
     STATS_LOG_INTERVAL_SEC,
 )
 from src.game_state import GameStateTracker  # noqa: E402
@@ -132,6 +133,16 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "Salva um frame a cada N frames processados (0 = desligado). "
             "Ex.: --save-every 30"
+        ),
+    )
+    parser.add_argument(
+        "--startup-delay",
+        type=float,
+        default=STARTUP_DELAY_SEC,
+        help=(
+            "Segundos de espera antes do 1º frame em novas capturas "
+            f"(padrão: {STARTUP_DELAY_SEC:g}; 0 = sem espera). "
+            "Não se aplica a --render-*-debug / --image / --list-sessions."
         ),
     )
     parser.add_argument(
@@ -298,7 +309,30 @@ def capture_run_parameters(args: argparse.Namespace) -> dict:
         "stats_interval": float(args.stats_interval),
         "dump_state": bool(args.dump_state),
         "output_dir": getattr(args, "output_dir", None),
+        "startup_delay_sec": float(getattr(args, "startup_delay", STARTUP_DELAY_SEC)),
     }
+
+
+def wait_startup_delay(seconds: float) -> float:
+    """Contagem regressiva antes da 1ª captura; não chama MSS/visão.
+
+    Retorna o tempo de espera efetivamente aplicado (>= 0).
+    """
+    delay = float(seconds)
+    if delay <= 0:
+        announce("startup-delay=0 — iniciando captura imediatamente.")
+        return 0.0
+    # Contagem inteira visível: 5, 4, 3, 2, 1 (arredonda para cima se fracionário).
+    steps = max(1, int(np.ceil(delay)))
+    announce(
+        f"Aguardando {delay:g}s antes da captura (Alt+Tab para o Last War)…"
+    )
+    for remaining in range(steps, 0, -1):
+        announce(f"  {remaining}")
+        # Distribui o atraso total nos ticks da contagem.
+        time.sleep(delay / float(steps))
+    announce("Espera concluída — iniciando captura.")
+    return delay
 
 
 def open_capture_session(
@@ -499,6 +533,7 @@ def run_diag_capture(
     paths, meta = open_capture_session(args, captures_parent=captures_dir)
     out_dir = paths.frames_dir
     session = RunSession(captures_dir=out_dir)
+    startup_delay = float(getattr(args, "startup_delay", STARTUP_DELAY_SEC))
 
     announce("=== DIAG-CAPTURE: teste controlado com frame REAL do MSS ===")
     announce(f"Sessão: {paths.session_id}")
@@ -506,6 +541,7 @@ def run_diag_capture(
     announce(f"debug  → {paths.debug_dir.resolve()}")
     announce_path_diagnostics(out_dir)
     announce(f"pid={os.getpid()} | python={sys.executable}")
+    wait_startup_delay(startup_delay)
 
     last_resolution: Optional[Tuple[int, int]] = None
     try:
@@ -595,6 +631,7 @@ def run_capture_loop(
     root_sentinel = SAVE_REQUEST_FILE
     session_sentinel = paths.session_dir / ".save_now"
 
+    startup_delay = float(getattr(args, "startup_delay", STARTUP_DELAY_SEC))
     announce("CAPTURANDO MONITOR… (loop contínuo — encerra só com Ctrl+C)")
     announce(f"Sessão exclusiva: {paths.session_id}")
     announce(f"frames → {paths.frames_dir.resolve()}")
@@ -605,7 +642,8 @@ def run_capture_loop(
     announce(
         f"Argumentos interpretados: save_every={save_every!r} "
         f"(type={type(save_every).__name__}) | save_interval={save_interval!r} | "
-        f"monitor={args.monitor} | max_frames={args.max_frames}"
+        f"monitor={args.monitor} | max_frames={args.max_frames} | "
+        f"startup_delay={startup_delay:g}"
     )
     announce(
         f"Sentinela de save: {root_sentinel.resolve()} "
@@ -624,6 +662,8 @@ def run_capture_loop(
             "o loop vai rodar para sempre SEM gravar PNG. "
             "Use: python -m src.main --save-every 30"
         )
+    # Espera ANTES de abrir MSS/grab — nenhum frame processado ainda.
+    wait_startup_delay(startup_delay)
 
     try:
         with ScreenCapture(monitor_index=args.monitor) as capture:

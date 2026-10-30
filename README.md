@@ -33,7 +33,12 @@ data/debug/session_YYYYMMDD_HHMMSS/
 python -m src.main --diag-capture
 
 # 2) Loop contínuo (NÃO encerra sozinho — use Ctrl+C)
+# Contagem regressiva padrão de 5s (5, 4, 3, 2, 1) antes do 1º frame
 python -m src.main --save-every 30
+
+# 2b) Alterar ou desligar a espera (0 = imediato)
+python -m src.main --save-every 30 --startup-delay 5
+python -m src.main --save-every 30 --startup-delay 0
 
 # 3) Pasta de saída manual (ainda com frames/ + metadata.json)
 python -m src.main --save-every 30 --output-dir data/captures/minha_partida_teste
@@ -43,8 +48,9 @@ python -m src.main --list-sessions
 ```
 
 Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.
+Antes da 1ª captura, o terminal faz uma contagem regressiva (`--startup-delay`, padrão **5s**); nenhum frame é processado nessa espera. A espera **não** se aplica a `--list-sessions`, `--image` nem `--render-*-debug`.
 Sem `--save-every` / `--save-interval`, **nenhum PNG é gravado** (o loop só processa e loga).
-Ao encerrar com Ctrl+C, o terminal mostra um resumo e atualiza `metadata.json` (data/hora, resolução, FPS, frames, parâmetros).
+Ao encerrar com Ctrl+C, o terminal mostra um resumo e atualiza `metadata.json` (data/hora, resolução, FPS, frames, parâmetros — incluindo `startup_delay_sec`).
 
 **Importante:** os PNGs vão para o caminho absoluto impresso no log (`frames → ...`). O programa também imprime `cwd`, `PROJECT_ROOT` e o id da sessão.
 
@@ -77,8 +83,8 @@ Frames soltos em `data/captures/*.png` (antes das sessões) continuam válidos. 
 1. Abra o Cursor e o terminal integrado.
 2. Execute: `python -m src.main --save-every 30`
 3. Confira no terminal: id da sessão e o caminho absoluto de `frames/`.
-4. Use **Alt+Tab** para colocar o **Last War** em primeiro plano.
-5. O Python continua capturando/salvando em segundo plano.
+4. Durante a contagem **5 → 1**, use **Alt+Tab** para colocar o **Last War** em primeiro plano.
+5. Após a espera, o Python inicia a captura/salvamento em segundo plano.
 6. Volte ao terminal (Alt+Tab) e use **Ctrl+C** para o **resumo** + `metadata.json`.
 
 Não é necessário manter o Cursor em primeiro plano. Não há seletor de região (`selectROI`).
