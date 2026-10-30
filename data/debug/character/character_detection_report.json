@@ -8,7 +8,8 @@
   "hit_rate": 1.0,
   "hit_max_distance": 0.06,
   "use_temporal": false,
-  "note": "Acerto = distância do centro DETECTADO ao REAL (corpo) ≤ limiar. Não conta sucesso só por região central. HSV legado só para comparação.",
+  "variant": "baseline",
+  "note": "Acerto = distância do centro DETECTADO ao REAL (corpo) ≤ limiar. Não conta sucesso só por região central. HSV legado só para comparação. baseline = scoring atual; experimental = anti-painel + multi-cor.",
   "frames": [
     {
       "source": "frame_000030_1793391804.png",
@@ -36,7 +37,10 @@
         "confidence": 0.8921868518575876,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.914450234902914
+        "score": 5.914450234902914,
+        "color_cues": 2,
+        "texture_v_std": 44.742142327631115,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -85,7 +89,10 @@
         "confidence": 0.8587467583824681,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.535454083081054
+        "score": 5.535454083081054,
+        "color_cues": 3,
+        "texture_v_std": 44.508880278571404,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -134,7 +141,10 @@
         "confidence": 0.908188629588143,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.998794135456747
+        "score": 5.998794135456747,
+        "color_cues": 2,
+        "texture_v_std": 51.95651409676352,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -183,7 +193,10 @@
         "confidence": 0.9246509292827221,
         "region": "core",
         "source_cue": "blue",
-        "score": 6.195417281664689
+        "score": 6.195417281664689,
+        "color_cues": 1,
+        "texture_v_std": 39.69288802231443,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -232,7 +245,10 @@
         "confidence": 0.9414059097663869,
         "region": "core",
         "source_cue": "blue",
-        "score": 6.341555558482659
+        "score": 6.341555558482659,
+        "color_cues": 1,
+        "texture_v_std": 22.570637225226598,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -281,7 +297,10 @@
         "confidence": 0.8895733868086766,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.6767397869272385
+        "score": 5.6767397869272385,
+        "color_cues": 3,
+        "texture_v_std": 40.166090928570156,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -330,7 +349,10 @@
         "confidence": 0.862405931088278,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.485197689943879
+        "score": 5.485197689943879,
+        "color_cues": 3,
+        "texture_v_std": 39.88567475157685,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -379,7 +401,10 @@
         "confidence": 0.835625594670505,
         "region": "core",
         "source_cue": "blue",
-        "score": 5.349828776634715
+        "score": 5.349828776634715,
+        "color_cues": 2,
+        "texture_v_std": 37.2891333115046,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -428,7 +453,10 @@
         "confidence": 0.9174288987823179,
         "region": "core",
         "source_cue": "blue",
-        "score": 6.138959170491268
+        "score": 6.138959170491268,
+        "color_cues": 2,
+        "texture_v_std": 50.318876153323636,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [
@@ -477,7 +505,10 @@
         "confidence": 0.9139130369492804,
         "region": "soft",
         "source_cue": "blue",
-        "score": 6.078081523092512
+        "score": 6.078081523092512,
+        "color_cues": 3,
+        "texture_v_std": 38.50819886541195,
+        "variant": "baseline"
       },
       "hsv_legacy": {
         "bbox": [

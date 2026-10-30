@@ -192,7 +192,7 @@ Inclui: duas execuções criam sessões distintas sem sobrescrita; `metadata.jso
 ## Visão e estado
 
 - `vision.py`: personagem HSV legado, caminhões, barreiras, moedas.
-- `character.py`: detector de personagem na ROI (independente do HSV legado).
+- `character.py`: detector de personagem na ROI (independente do HSV legado). Variantes `baseline` (atual) e `experimental` (anti-painel homogêneo + combinação de cores); use `--character-variant`.
 - `game_state.py`: distância (fluxo óptico), posição, obstáculos relativos.
 
 ## Restrições
