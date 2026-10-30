@@ -113,6 +113,9 @@ PREVIEW_WINDOW_Y = 0
 # Intervalo padrão de log no terminal (segundos).
 STATS_LOG_INTERVAL_SEC = 1.0
 
+# Espera antes do 1º frame em novas capturas (Alt+Tab para o jogo).
+STARTUP_DELAY_SEC = 5.0
+
 # Salvamento periódico de frames (0 = desligado).
 SAVE_INTERVAL_SEC = 0.0
 SAVE_EVERY_N_FRAMES = 0

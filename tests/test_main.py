@@ -25,6 +25,7 @@ import numpy as np
 import pytest
 
 from src.config import PROJECT_ROOT
+from src.config import STARTUP_DELAY_SEC
 from src.main import (
     RunSession,
     announce_path_diagnostics,
@@ -36,6 +37,7 @@ from src.main import (
     run_diag_capture,
     save_frame,
     should_save_frame,
+    wait_startup_delay,
 )
 
 
@@ -59,6 +61,15 @@ def test_preview_disabled_by_default() -> None:
     assert args.preview is False
     assert args.save_every == 0
     assert args.diag_capture is False
+    assert args.startup_delay == STARTUP_DELAY_SEC
+    assert STARTUP_DELAY_SEC == 5.0
+
+
+def test_startup_delay_cli_override() -> None:
+    args = build_parser().parse_args(["--startup-delay", "2.5"])
+    assert args.startup_delay == 2.5
+    args_zero = build_parser().parse_args(["--startup-delay", "0"])
+    assert args_zero.startup_delay == 0.0
 
 
 def test_save_every_parsed_as_int() -> None:
@@ -154,6 +165,8 @@ def test_save_every_creates_expected_files(
                     "--stats-interval",
                     "0",
                     "--no-trace-frames",
+                    "--startup-delay",
+                    "0",
                 ]
             )
             code = run_capture_loop(args, captures_dir=tmp_path)
@@ -174,7 +187,15 @@ def test_without_save_every_warns_and_saves_nothing(
     with patch("src.screen_capture.mss.mss", return_value=mock_sct):
         with patch("src.screen_capture.np.asarray", return_value=bgra):
             args = build_parser().parse_args(
-                ["--max-frames", "35", "--stats-interval", "0", "--no-trace-frames"]
+                [
+                    "--max-frames",
+                    "35",
+                    "--stats-interval",
+                    "0",
+                    "--no-trace-frames",
+                    "--startup-delay",
+                    "0",
+                ]
             )
             code = run_capture_loop(args, captures_dir=tmp_path)
     assert code == 0
@@ -193,7 +214,14 @@ def test_trace_frames_logs_received(
     with patch("src.screen_capture.mss.mss", return_value=mock_sct):
         with patch("src.screen_capture.np.asarray", return_value=bgra):
             args = build_parser().parse_args(
-                ["--max-frames", "2", "--stats-interval", "0"]
+                [
+                    "--max-frames",
+                    "2",
+                    "--stats-interval",
+                    "0",
+                    "--startup-delay",
+                    "0",
+                ]
             )
             run_capture_loop(args, captures_dir=tmp_path)
     out = capsys.readouterr().out
@@ -221,7 +249,15 @@ def test_keyboard_interrupt_prints_summary(
         with patch("src.screen_capture.np.asarray", return_value=bgra):
             with patch.object(ScreenCapture, "grab", grab_until_interrupt):
                 args = build_parser().parse_args(
-                    ["--save-every", "5", "--stats-interval", "0", "--no-trace-frames"]
+                    [
+                        "--save-every",
+                        "5",
+                        "--stats-interval",
+                        "0",
+                        "--no-trace-frames",
+                        "--startup-delay",
+                        "0",
+                    ]
                 )
                 code = run_capture_loop(args, captures_dir=tmp_path)
 
@@ -236,9 +272,12 @@ def test_diag_capture_uses_mss_grab_not_synthetic(
 ) -> None:
     """Automatizado: diag-capture chama MSS.grab (mock) — não lê synthetic_sample."""
     mock_sct, bgra = _mock_monitor_bgra(h=50, w=80)
+    args = build_parser().parse_args(
+        ["--diag-capture", "--monitor", "1", "--startup-delay", "0"]
+    )
     with patch("src.screen_capture.mss.mss", return_value=mock_sct):
         with patch("src.screen_capture.np.asarray", return_value=bgra):
-            code = run_diag_capture(1, captures_dir=tmp_path)
+            code = run_diag_capture(1, captures_dir=tmp_path, args=args)
     assert code == 0
     mock_sct.grab.assert_called()
     saved = _session_frame_pngs(tmp_path)
@@ -249,6 +288,106 @@ def test_diag_capture_uses_mss_grab_not_synthetic(
     assert "cv2.imwrite retornou:" in out
     assert "synthetic_sample" not in out
     assert "Sessão:" in out
+
+
+def test_wait_startup_delay_countdown(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    with patch("src.main.time.sleep") as sleep_mock:
+        with patch("src.screen_capture.mss.mss") as mss_mock:
+            applied = wait_startup_delay(5)
+    assert applied == 5.0
+    assert sleep_mock.call_count == 5
+    for call in sleep_mock.call_args_list:
+        assert call.args[0] == pytest.approx(1.0)
+    mss_mock.assert_not_called()
+    out = capsys.readouterr().out
+    assert "Aguardando 5s" in out
+    for n in (5, 4, 3, 2, 1):
+        assert f"  {n}" in out
+    assert "Espera concluída" in out
+
+
+def test_wait_startup_delay_zero_skips_sleep(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    with patch("src.main.time.sleep") as sleep_mock:
+        assert wait_startup_delay(0) == 0.0
+    sleep_mock.assert_not_called()
+    assert "startup-delay=0" in capsys.readouterr().out
+
+
+def test_no_frame_processed_before_startup_delay_ends(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """Durante a espera: zero grabs MSS e zero PNG; depois captura normal."""
+    mock_sct, bgra = _mock_monitor_bgra()
+    order: list[str] = []
+
+    def sleep_rec(seconds: float) -> None:
+        order.append(f"sleep:{seconds}")
+        assert mock_sct.grab.call_count == 0
+        assert list(tmp_path.glob("session_*/frames/frame_*.png")) == []
+
+    def grab_side_effect(*_a, **_k):  # noqa: ANN002
+        order.append("grab")
+        return bgra
+
+    mock_sct.grab.side_effect = grab_side_effect
+    with patch("src.main.time.sleep", side_effect=sleep_rec):
+        with patch("src.screen_capture.mss.mss", return_value=mock_sct):
+            with patch("src.screen_capture.np.asarray", return_value=bgra):
+                args = build_parser().parse_args(
+                    [
+                        "--max-frames",
+                        "2",
+                        "--save-every",
+                        "1",
+                        "--stats-interval",
+                        "0",
+                        "--no-trace-frames",
+                        "--startup-delay",
+                        "3",
+                    ]
+                )
+                code = run_capture_loop(args, captures_dir=tmp_path)
+
+    assert code == 0
+    assert order[:3] == ["sleep:1.0", "sleep:1.0", "sleep:1.0"]
+    assert order[3] == "grab"
+    assert order.count("grab") == 2
+    assert mock_sct.grab.call_count == 2
+    saved = _session_frame_pngs(tmp_path)
+    assert len(saved) == 2
+    from src.session import list_session_dirs
+
+    meta = json.loads(
+        (list_session_dirs(tmp_path)[0] / "metadata.json").read_text(encoding="utf-8")
+    )
+    assert meta["parameters"]["startup_delay_sec"] == 3.0
+    out = capsys.readouterr().out
+    assert "  3" in out and "  2" in out and "  1" in out
+    assert "Espera concluída" in out
+
+
+def test_image_analysis_skips_startup_delay(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """Comandos de análise de sessão/imagem não entram na espera de captura."""
+    import cv2
+
+    img_path = tmp_path / "sample.png"
+    frame = np.zeros((120, 160, 3), dtype=np.uint8)
+    frame[80:110, 60:90] = (0, 140, 255)
+    cv2.imwrite(str(img_path), frame)
+
+    with patch("src.main.wait_startup_delay") as wait_mock:
+        with patch("src.main.time.sleep") as sleep_mock:
+            code = main(["--image", str(img_path), "--startup-delay", "5"])
+    assert code == 0
+    wait_mock.assert_not_called()
+    sleep_mock.assert_not_called()
+    assert "Aguardando" not in capsys.readouterr().out
 
 
 def test_print_run_summary_lists_paths(
