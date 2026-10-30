@@ -1,0 +1,504 @@
+{
+  "frames_total": 10,
+  "frames_with_gt": 10,
+  "hits": 10,
+  "misses": 0,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "hit_rate": 1.0,
+  "hit_max_distance": 0.06,
+  "use_temporal": false,
+  "note": "Acerto = distância do centro DETECTADO ao REAL (corpo) ≤ limiar. Não conta sucesso só por região central. HSV legado só para comparação.",
+  "frames": [
+    {
+      "source": "frame_000030_1793391804.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.66
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          975,
+          647,
+          72,
+          97
+        ],
+        "center": [
+          1011.0,
+          695.5
+        ],
+        "center_norm": [
+          0.5265625,
+          0.6439814814814815
+        ],
+        "confidence": 0.8921868518575876,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.914450234902914
+      },
+      "hsv_legacy": {
+        "bbox": [
+          8,
+          1059,
+          49,
+          21
+        ],
+        "center": [
+          32.5,
+          1069.5
+        ],
+        "confidence": 0.3340077593537415,
+        "label": "character"
+      },
+      "distance_to_gt": 0.03101869342474186,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000030_1793391804_character_detect.png",
+      "notes": "Escudo azul; capa vermelha"
+    },
+    {
+      "source": "frame_000060_1793391828.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.61
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          936,
+          609,
+          52,
+          102
+        ],
+        "center": [
+          962.0,
+          660.0
+        ],
+        "center_norm": [
+          0.5010416666666667,
+          0.6111111111111112
+        ],
+        "confidence": 0.8587467583824681,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.535454083081054
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1497,
+          832,
+          66,
+          44
+        ],
+        "center": [
+          1530.0,
+          854.0
+        ],
+        "confidence": 0.7430139032369146,
+        "label": "character"
+      },
+      "distance_to_gt": 0.0015230355694071166,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000060_1793391828_character_detect.png",
+      "notes": "Corrida centro"
+    },
+    {
+      "source": "frame_000090_1793391852.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.62
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          879,
+          606,
+          72,
+          97
+        ],
+        "center": [
+          915.0,
+          654.5
+        ],
+        "center_norm": [
+          0.4765625,
+          0.6060185185185185
+        ],
+        "confidence": 0.908188629588143,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.998794135456747
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1594,
+          998,
+          57,
+          55
+        ],
+        "center": [
+          1622.5,
+          1025.5
+        ],
+        "confidence": 0.8732854864433812,
+        "label": "character"
+      },
+      "distance_to_gt": 0.027290991749421817,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000090_1793391852_character_detect.png",
+      "notes": "Aura azul sob ponte"
+    },
+    {
+      "source": "frame_000120_1793391875.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.6
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          895,
+          620,
+          72,
+          97
+        ],
+        "center": [
+          931.0,
+          668.5
+        ],
+        "center_norm": [
+          0.48489583333333336,
+          0.6189814814814815
+        ],
+        "confidence": 0.9246509292827221,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.195417281664689
+      },
+      "hsv_legacy": {
+        "bbox": [
+          901,
+          266,
+          92,
+          163
+        ],
+        "center": [
+          947.0,
+          347.5
+        ],
+        "confidence": 0.9527257268604961,
+        "label": "character"
+      },
+      "distance_to_gt": 0.024257627458724573,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000120_1793391875_character_detect.png",
+      "notes": "Arco; glow azul"
+    },
+    {
+      "source": "frame_000150_1793391899.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.43
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          1001,
+          380,
+          72,
+          97
+        ],
+        "center": [
+          1037.0,
+          428.5
+        ],
+        "center_norm": [
+          0.5401041666666667,
+          0.39675925925925926
+        ],
+        "confidence": 0.9414059097663869,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.341555558482659
+      },
+      "hsv_legacy": {
+        "bbox": [
+          855,
+          771,
+          221,
+          309
+        ],
+        "center": [
+          965.5,
+          925.5
+        ],
+        "confidence": 0.8717040811843781,
+        "label": "character"
+      },
+      "distance_to_gt": 0.05208926020804023,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000150_1793391899_character_detect.png",
+      "notes": "Mais à frente na pista; camiseta teal"
+    },
+    {
+      "source": "frame_000180_1793391920.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.51,
+        0.56
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          969,
+          552,
+          42,
+          82
+        ],
+        "center": [
+          990.0,
+          593.0
+        ],
+        "center_norm": [
+          0.515625,
+          0.549074074074074
+        ],
+        "confidence": 0.8895733868086766,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.6767397869272385
+      },
+      "hsv_legacy": {
+        "bbox": [
+          974,
+          0,
+          946,
+          742
+        ],
+        "center": [
+          1447.0,
+          371.0
+        ],
+        "confidence": 0.890148689616658,
+        "label": "character"
+      },
+      "distance_to_gt": 0.012288876365999535,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000180_1793391920_character_detect.png",
+      "notes": "Deserto sob ponte"
+    },
+    {
+      "source": "frame_000210_1793391941.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.51,
+        0.63
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          974,
+          639,
+          47,
+          87
+        ],
+        "center": [
+          997.5,
+          682.5
+        ],
+        "center_norm": [
+          0.51953125,
+          0.6319444444444444
+        ],
+        "confidence": 0.862405931088278,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.485197689943879
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1871,
+          1008,
+          49,
+          72
+        ],
+        "center": [
+          1895.5,
+          1044.0
+        ],
+        "confidence": 0.27901190476190474,
+        "label": "character"
+      },
+      "distance_to_gt": 0.009727568594465453,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000210_1793391941_character_detect.png",
+      "notes": "Faixa de pedestres"
+    },
+    {
+      "source": "frame_000240_1793391962.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.55
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          940,
+          542,
+          37,
+          31
+        ],
+        "center": [
+          958.5,
+          557.5
+        ],
+        "center_norm": [
+          0.49921875,
+          0.5162037037037037
+        ],
+        "confidence": 0.835625594670505,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 5.349828776634715
+      },
+      "hsv_legacy": {
+        "bbox": [
+          927,
+          568,
+          70,
+          51
+        ],
+        "center": [
+          962.0,
+          593.5
+        ],
+        "confidence": 0.3767040441176471,
+        "label": "character"
+      },
+      "distance_to_gt": 0.03380532494903063,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000240_1793391962_character_detect.png",
+      "notes": "Sem escudo forte; capacete azul + camisa clara"
+    },
+    {
+      "source": "frame_000270_1793391982.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.55
+      ],
+      "gt_expected_region": "core",
+      "detected": {
+        "bbox": [
+          908,
+          521,
+          72,
+          97
+        ],
+        "center": [
+          944.0,
+          569.5
+        ],
+        "center_norm": [
+          0.49166666666666664,
+          0.5273148148148148
+        ],
+        "confidence": 0.9174288987823179,
+        "region": "core",
+        "source_cue": "blue",
+        "score": 6.138959170491268
+      },
+      "hsv_legacy": {
+        "bbox": [
+          0,
+          153,
+          592,
+          481
+        ],
+        "center": [
+          296.0,
+          393.5
+        ],
+        "confidence": 0.9008035062089117,
+        "label": "character"
+      },
+      "distance_to_gt": 0.024167376178033752,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000270_1793391982_character_detect.png",
+      "notes": "Aura + capa vermelha"
+    },
+    {
+      "source": "frame_000300_1793390965.png",
+      "hit": true,
+      "gt_center_norm": [
+        0.5,
+        0.36
+      ],
+      "gt_expected_region": "soft",
+      "detected": {
+        "bbox": [
+          935,
+          356,
+          48,
+          73
+        ],
+        "center": [
+          959.0,
+          392.5
+        ],
+        "center_norm": [
+          0.49947916666666664,
+          0.36342592592592593
+        ],
+        "confidence": 0.9139130369492804,
+        "region": "soft",
+        "source_cue": "blue",
+        "score": 6.078081523092512
+      },
+      "hsv_legacy": {
+        "bbox": [
+          1456,
+          736,
+          26,
+          40
+        ],
+        "center": [
+          1469.0,
+          756.0
+        ],
+        "confidence": 0.3851358173076923,
+        "label": "character"
+      },
+      "distance_to_gt": 0.003465290148175571,
+      "region_ok": true,
+      "false_positive": false,
+      "false_negative": false,
+      "output_png": "/workspace/data/debug/character/frame_000300_1793390965_character_detect.png",
+      "notes": "Salto alto — deve cair na soft"
+    }
+  ]
+}

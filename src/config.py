@@ -18,6 +18,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 CAPTURES_DIR = DATA_DIR / "captures"
 DEBUG_DIR = DATA_DIR / "debug"
 ROI_DEBUG_DIR = DEBUG_DIR / "roi"
+CHARACTER_DEBUG_DIR = DEBUG_DIR / "character"
 MODELS_DIR = PROJECT_ROOT / "models"
 
 # Arquivos de captura a ignorar na renderização de debug offline.
@@ -51,6 +52,41 @@ ROI_REGION_COLORS: dict[str, Tuple[int, int, int]] = {
     "soft": (0, 200, 255),
     "outside": (80, 80, 80),
 }
+
+# ---------------------------------------------------------------------------
+# Detector de personagem (independente do HSV character legado)
+# ---------------------------------------------------------------------------
+# Faixas próprias do avatar — NÃO reutilizam truck/barrier/coin.
+CHARACTER_BLUE_HSV: Tuple[Tuple[int, int, int], Tuple[int, int, int]] = (
+    (85, 35, 50),
+    (125, 255, 255),
+)
+CHARACTER_CYAN_HSV: Tuple[Tuple[int, int, int], Tuple[int, int, int]] = (
+    (78, 20, 120),
+    (112, 255, 255),
+)
+# Cue secundário (corpo/capacete claro) — separado do HSV legado de VisionAnalyzer.
+CHARACTER_ORANGE_HSV: Tuple[Tuple[int, int, int], Tuple[int, int, int]] = (
+    (8, 90, 90),
+    (28, 255, 255),
+)
+CHARACTER_RED_HSV_LOW: Tuple[Tuple[int, int, int], Tuple[int, int, int]] = (
+    (0, 90, 90),
+    (10, 255, 255),
+)
+CHARACTER_RED_HSV_HIGH: Tuple[Tuple[int, int, int], Tuple[int, int, int]] = (
+    (160, 90, 90),
+    (179, 255, 255),
+)
+CHARACTER_MIN_AREA = 80
+CHARACTER_MAX_WIDTH_FRAC = 0.13
+CHARACTER_ASPECT_MIN = 0.65
+CHARACTER_ASPECT_MAX = 3.4
+CHARACTER_TARGET_WIDTH_FRAC = 0.038
+CHARACTER_TARGET_HEIGHT_FRAC = 0.09
+CHARACTER_CONF_MIN = 0.35
+# Acerto vs GT (centro do corpo, normalizado).
+CHARACTER_HIT_MAX_DISTANCE = 0.06
 
 # Arquivo-sentinela: se existir, o loop salva um frame e remove o arquivo.
 # Funciona mesmo com o Last War em primeiro plano (sem roubar foco).

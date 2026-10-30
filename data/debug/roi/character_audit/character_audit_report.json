@@ -1,0 +1,262 @@
+[
+  {
+    "frame": "frame_000030_1793391804",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        8,
+        1059,
+        49,
+        21
+      ],
+      "center": [
+        32.5,
+        1069.5
+      ],
+      "conf": 0.334,
+      "center_region": "outside",
+      "track_region": "outside",
+      "ic": 0.0,
+      "ip": 0.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": "centro HSV fora do n\u00facleo/soft; ic=0.00<0.30; ip=0.00 insuficiente; bbox colado a HUD/borda da tela (FP t\u00edpico)",
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000030_1793391804_character_audit.png"
+  },
+  {
+    "frame": "frame_000060_1793391828",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        1497,
+        832,
+        66,
+        44
+      ],
+      "center": [
+        1530.0,
+        854.0
+      ],
+      "conf": 0.743,
+      "center_region": "soft",
+      "track_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000060_1793391828_character_audit.png"
+  },
+  {
+    "frame": "frame_000090_1793391852",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        1594,
+        998,
+        57,
+        55
+      ],
+      "center": [
+        1622.5,
+        1025.5
+      ],
+      "conf": 0.873,
+      "center_region": "soft",
+      "track_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000090_1793391852_character_audit.png"
+  },
+  {
+    "frame": "frame_000120_1793391875",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        901,
+        266,
+        92,
+        163
+      ],
+      "center": [
+        947.0,
+        347.5
+      ],
+      "conf": 0.953,
+      "center_region": "outside",
+      "track_region": "soft",
+      "ic": 0.117,
+      "ip": 0.448
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000120_1793391875_character_audit.png"
+  },
+  {
+    "frame": "frame_000150_1793391899",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        855,
+        771,
+        221,
+        309
+      ],
+      "center": [
+        965.5,
+        925.5
+      ],
+      "conf": 0.872,
+      "center_region": "core",
+      "track_region": "core",
+      "ic": 0.929,
+      "ip": 1.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000150_1793391899_character_audit.png"
+  },
+  {
+    "frame": "frame_000180_1793391920",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        974,
+        0,
+        946,
+        742
+      ],
+      "center": [
+        1447.0,
+        371.0
+      ],
+      "conf": 0.89,
+      "center_region": "outside",
+      "track_region": "outside",
+      "ic": 0.122,
+      "ip": 0.229
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": "centro HSV fora do n\u00facleo/soft; ic=0.12<0.30; ip=0.23 insuficiente; bbox enorme (cobre cen\u00e1rio, n\u00e3o o avatar)",
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000180_1793391920_character_audit.png"
+  },
+  {
+    "frame": "frame_000210_1793391941",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        1871,
+        1008,
+        49,
+        72
+      ],
+      "center": [
+        1895.5,
+        1044.0
+      ],
+      "conf": 0.279,
+      "center_region": "outside",
+      "track_region": "outside",
+      "ic": 0.0,
+      "ip": 0.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": "centro HSV fora do n\u00facleo/soft; ic=0.00<0.30; ip=0.00 insuficiente; bbox colado a HUD/borda da tela (FP t\u00edpico)",
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000210_1793391941_character_audit.png"
+  },
+  {
+    "frame": "frame_000240_1793391962",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        927,
+        568,
+        70,
+        51
+      ],
+      "center": [
+        962.0,
+        593.5
+      ],
+      "conf": 0.377,
+      "center_region": "core",
+      "track_region": "core",
+      "ic": 1.0,
+      "ip": 1.0
+    },
+    "hsv_is_real_player": true,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000240_1793391962_character_audit.png"
+  },
+  {
+    "frame": "frame_000270_1793391982",
+    "real_roi": "core",
+    "real_track_by_intersection": "core",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        0,
+        153,
+        592,
+        481
+      ],
+      "center": [
+        296.0,
+        393.5
+      ],
+      "conf": 0.901,
+      "center_region": "outside",
+      "track_region": "outside",
+      "ic": 0.0,
+      "ip": 0.038
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": "centro HSV fora do n\u00facleo/soft; ic=0.00<0.30; ip=0.04 insuficiente; bbox colado a HUD/borda da tela (FP t\u00edpico)",
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000270_1793391982_character_audit.png"
+  },
+  {
+    "frame": "frame_000300_1793390965",
+    "real_roi": "soft",
+    "real_track_by_intersection": "soft",
+    "roi_preserves_real": true,
+    "hsv": {
+      "bbox": [
+        1456,
+        736,
+        26,
+        40
+      ],
+      "center": [
+        1469.0,
+        756.0
+      ],
+      "conf": 0.385,
+      "center_region": "soft",
+      "track_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0
+    },
+    "hsv_is_real_player": false,
+    "why_hsv_outside": null,
+    "audit_png": "/workspace/data/debug/roi/character_audit/frame_000300_1793390965_character_audit.png"
+  }
+]

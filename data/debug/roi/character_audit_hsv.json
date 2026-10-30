@@ -1,0 +1,212 @@
+[
+  {
+    "file": "frame_000030_1793391804.png",
+    "hsv_char": {
+      "bbox": [
+        8,
+        1059,
+        49,
+        21
+      ],
+      "center": [
+        32.5,
+        1069.5
+      ],
+      "conf": 0.334,
+      "center_region": "outside",
+      "ic": 0.0,
+      "ip": 0.0,
+      "track_region": "outside"
+    },
+    "hsv_region": "outside"
+  },
+  {
+    "file": "frame_000060_1793391828.png",
+    "hsv_char": {
+      "bbox": [
+        1497,
+        832,
+        66,
+        44
+      ],
+      "center": [
+        1530.0,
+        854.0
+      ],
+      "conf": 0.743,
+      "center_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0,
+      "track_region": "soft"
+    },
+    "hsv_region": "soft"
+  },
+  {
+    "file": "frame_000090_1793391852.png",
+    "hsv_char": {
+      "bbox": [
+        1594,
+        998,
+        57,
+        55
+      ],
+      "center": [
+        1622.5,
+        1025.5
+      ],
+      "conf": 0.873,
+      "center_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0,
+      "track_region": "soft"
+    },
+    "hsv_region": "soft"
+  },
+  {
+    "file": "frame_000120_1793391875.png",
+    "hsv_char": {
+      "bbox": [
+        901,
+        266,
+        92,
+        163
+      ],
+      "center": [
+        947.0,
+        347.5
+      ],
+      "conf": 0.953,
+      "center_region": "outside",
+      "ic": 0.117,
+      "ip": 0.448,
+      "track_region": "soft"
+    },
+    "hsv_region": "soft"
+  },
+  {
+    "file": "frame_000150_1793391899.png",
+    "hsv_char": {
+      "bbox": [
+        855,
+        771,
+        221,
+        309
+      ],
+      "center": [
+        965.5,
+        925.5
+      ],
+      "conf": 0.872,
+      "center_region": "core",
+      "ic": 0.929,
+      "ip": 1.0,
+      "track_region": "core"
+    },
+    "hsv_region": "core"
+  },
+  {
+    "file": "frame_000180_1793391920.png",
+    "hsv_char": {
+      "bbox": [
+        974,
+        0,
+        946,
+        742
+      ],
+      "center": [
+        1447.0,
+        371.0
+      ],
+      "conf": 0.89,
+      "center_region": "outside",
+      "ic": 0.122,
+      "ip": 0.229,
+      "track_region": "outside"
+    },
+    "hsv_region": "outside"
+  },
+  {
+    "file": "frame_000210_1793391941.png",
+    "hsv_char": {
+      "bbox": [
+        1871,
+        1008,
+        49,
+        72
+      ],
+      "center": [
+        1895.5,
+        1044.0
+      ],
+      "conf": 0.279,
+      "center_region": "outside",
+      "ic": 0.0,
+      "ip": 0.0,
+      "track_region": "outside"
+    },
+    "hsv_region": "outside"
+  },
+  {
+    "file": "frame_000240_1793391962.png",
+    "hsv_char": {
+      "bbox": [
+        927,
+        568,
+        70,
+        51
+      ],
+      "center": [
+        962.0,
+        593.5
+      ],
+      "conf": 0.377,
+      "center_region": "core",
+      "ic": 1.0,
+      "ip": 1.0,
+      "track_region": "core"
+    },
+    "hsv_region": "core"
+  },
+  {
+    "file": "frame_000270_1793391982.png",
+    "hsv_char": {
+      "bbox": [
+        0,
+        153,
+        592,
+        481
+      ],
+      "center": [
+        296.0,
+        393.5
+      ],
+      "conf": 0.901,
+      "center_region": "outside",
+      "ic": 0.0,
+      "ip": 0.038,
+      "track_region": "outside"
+    },
+    "hsv_region": "outside"
+  },
+  {
+    "file": "frame_000300_1793390965.png",
+    "hsv_char": {
+      "bbox": [
+        1456,
+        736,
+        26,
+        40
+      ],
+      "center": [
+        1469.0,
+        756.0
+      ],
+      "conf": 0.385,
+      "center_region": "soft",
+      "ic": 0.0,
+      "ip": 1.0,
+      "track_region": "soft"
+    },
+    "hsv_region": "soft"
+  }
+]

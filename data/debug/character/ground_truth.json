@@ -1,0 +1,56 @@
+{
+  "description": "Centros REAL do corpo do avatar (normalizados 0-1), anotados visualmente a partir dos frames e character_audit. Não usar o blob HSV legado como verdade.",
+  "hit_max_distance": 0.06,
+  "frames": {
+    "frame_000030_1793391804.png": {
+      "center_norm": [0.5, 0.66],
+      "expected_region": "core",
+      "notes": "Escudo azul; capa vermelha"
+    },
+    "frame_000060_1793391828.png": {
+      "center_norm": [0.5, 0.61],
+      "expected_region": "core",
+      "notes": "Corrida centro"
+    },
+    "frame_000090_1793391852.png": {
+      "center_norm": [0.5, 0.62],
+      "expected_region": "core",
+      "notes": "Aura azul sob ponte"
+    },
+    "frame_000120_1793391875.png": {
+      "center_norm": [0.5, 0.6],
+      "expected_region": "core",
+      "notes": "Arco; glow azul"
+    },
+    "frame_000150_1793391899.png": {
+      "center_norm": [0.5, 0.43],
+      "expected_region": "core",
+      "notes": "Mais à frente na pista; camiseta teal"
+    },
+    "frame_000180_1793391920.png": {
+      "center_norm": [0.51, 0.56],
+      "expected_region": "core",
+      "notes": "Deserto sob ponte"
+    },
+    "frame_000210_1793391941.png": {
+      "center_norm": [0.51, 0.63],
+      "expected_region": "core",
+      "notes": "Faixa de pedestres"
+    },
+    "frame_000240_1793391962.png": {
+      "center_norm": [0.5, 0.55],
+      "expected_region": "core",
+      "notes": "Sem escudo forte; capacete azul + camisa clara"
+    },
+    "frame_000270_1793391982.png": {
+      "center_norm": [0.5, 0.55],
+      "expected_region": "core",
+      "notes": "Aura + capa vermelha"
+    },
+    "frame_000300_1793390965.png": {
+      "center_norm": [0.5, 0.36],
+      "expected_region": "soft",
+      "notes": "Salto alto — deve cair na soft"
+    }
+  }
+}
