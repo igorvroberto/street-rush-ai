@@ -21,7 +21,11 @@ python -m src.main --save-every 30
 
 # 3) Debug offline: boxes HSV nos frames reais → data/debug/
 python -m src.main --render-debug
+
+# 4) Debug ROI da pista (máscara + overlay + detecções core/soft/outside)
+python -m src.main --render-roi-debug
 ```
+
 
 
 Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.

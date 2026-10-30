@@ -38,12 +38,14 @@ Desktop.ini
 # Project artifacts
 data/captures/
 data/debug/*
+data/debug/roi/
 data/*.png
 data/*.jpg
 data/*.jpeg
 data/*.bmp
 !data/.gitkeep
 !data/debug/.gitkeep
+!data/debug/roi/.gitkeep
 models/*.pt
 models/*.onnx
 models/*.h5
