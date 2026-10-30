@@ -18,22 +18,37 @@ DATA_DIR = PROJECT_ROOT / "data"
 CAPTURES_DIR = DATA_DIR / "captures"
 MODELS_DIR = PROJECT_ROOT / "models"
 
+# Arquivo-sentinela: se existir, o loop salva um frame e remove o arquivo.
+# Funciona mesmo com o Last War em primeiro plano (sem roubar foco).
+SAVE_REQUEST_FILE = CAPTURES_DIR / ".save_now"
+
 # ---------------------------------------------------------------------------
 # Display / captura
 # ---------------------------------------------------------------------------
-# Resolução alvo do cliente Last War (Windows).
-TARGET_WIDTH = 1918
-TARGET_HEIGHT = 1078
+# Resolução esperada do monitor do usuário (referência; a captura usa o MSS).
+EXPECTED_WIDTH = 1918
+EXPECTED_HEIGHT = 1078
 
-# Monitor MSS (1 = primário). Use 0 apenas se souber o que está fazendo.
+# Monitor MSS: 1 = monitor principal. 0 = virtual "all monitors".
 MONITOR_INDEX = 1
 
-# Nome da janela de visualização independente.
+# Preview desligado por padrão para não cobrir o jogo.
+PREVIEW_ENABLED_DEFAULT = False
 PREVIEW_WINDOW_NAME = "Street Rush AI — Preview"
+# Preview reduzido e deslocado para interferir o mínimo possível.
+PREVIEW_MAX_WIDTH = 480
+PREVIEW_WINDOW_X = 0
+PREVIEW_WINDOW_Y = 0
 
-# Teclas (OpenCV waitKey).
+# Intervalo padrão de log no terminal (segundos).
+STATS_LOG_INTERVAL_SEC = 1.0
+
+# Salvamento periódico de frames (0 = desligado).
+SAVE_INTERVAL_SEC = 0.0
+SAVE_EVERY_N_FRAMES = 0
+
+# Teclas OpenCV (somente com --preview).
 KEY_QUIT = ord("q")
-KEY_SELECT_ROI = ord("r")
 KEY_SAVE_FRAME = ord("s")
 
 # ---------------------------------------------------------------------------
@@ -44,7 +59,6 @@ OBJECT_TRUCK = "truck"
 OBJECT_BARRIER = "barrier"
 OBJECT_COIN = "coin"
 
-# Cores BGR para desenhar bounding boxes no preview.
 BOX_COLORS: dict[str, Tuple[int, int, int]] = {
     OBJECT_CHARACTER: (0, 255, 0),
     OBJECT_TRUCK: (0, 128, 255),
@@ -65,16 +79,13 @@ class HsvRange:
 class DetectionParams:
     """Parâmetros de detecção por tipo de objeto.
 
-    Os intervalos HSV abaixo são *pontos de partida* e devem ser calibrados
-    com capturas reais. Objetos só entram no estado do jogo se forem
-    efetivamente detectados no frame atual (área mínima + contorno válido).
+    Objetos só entram no estado do jogo se forem efetivamente detectados
+    no frame atual (área mínima + contorno válido).
     """
 
     min_area: int = 80
     max_area: int = 500_000
     morph_kernel: int = 3
-    # Perspectiva: objetos com centro_y menor (mais ao topo) = mais longe.
-    # Usado apenas para ordenar/relatar profundidade relativa.
 
 
 @dataclass
@@ -86,32 +97,25 @@ class VisionConfig:
     barrier: DetectionParams = field(default_factory=lambda: DetectionParams(min_area=200))
     coin: DetectionParams = field(default_factory=lambda: DetectionParams(min_area=40, max_area=8_000))
 
-    # HSV iniciais (calibração necessária com frames reais do Street Rush).
-    # Personagem: laranja (evita H≈0 para não colidir com barreiras vermelhas).
     character_hsv: HsvRange = field(
         default_factory=lambda: HsvRange(lower=(8, 100, 100), upper=(28, 255, 255))
     )
-    # Caminhões: azuis / cinza-azulados.
     truck_hsv: HsvRange = field(
         default_factory=lambda: HsvRange(lower=(90, 60, 60), upper=(130, 255, 255))
     )
-    # Barreiras / obstáculos: vermelho saturado (faixa alta H).
     barrier_hsv: HsvRange = field(
         default_factory=lambda: HsvRange(lower=(160, 100, 80), upper=(179, 255, 255))
     )
-    # Moedas: amarelo/dourado.
     coin_hsv: HsvRange = field(
         default_factory=lambda: HsvRange(lower=(18, 120, 120), upper=(35, 255, 255))
     )
 
 
-@dataclass
-class CaptureRegion:
-    """Região de captura em coordenadas de tela (pixels).
+@dataclass(frozen=True)
+class MonitorInfo:
+    """Geometria real do monitor retornada pelo MSS (sem coordenadas inventadas)."""
 
-    Se ``None`` for passado ao capturador, usa o monitor inteiro.
-    """
-
+    index: int
     left: int
     top: int
     width: int
@@ -125,15 +129,9 @@ class CaptureRegion:
             "height": int(self.height),
         }
 
-    def clamp_to_monitor(self, mon_left: int, mon_top: int, mon_w: int, mon_h: int) -> "CaptureRegion":
-        """Garante que a região permanece dentro do monitor."""
-        left = max(mon_left, min(self.left, mon_left + mon_w - 1))
-        top = max(mon_top, min(self.top, mon_top + mon_h - 1))
-        max_w = mon_left + mon_w - left
-        max_h = mon_top + mon_h - top
-        width = max(1, min(self.width, max_w))
-        height = max(1, min(self.height, max_h))
-        return CaptureRegion(left=left, top=top, width=width, height=height)
+    @property
+    def resolution_label(self) -> str:
+        return f"{self.width}x{self.height}"
 
 
 DEFAULT_VISION = VisionConfig()

@@ -2,30 +2,66 @@
 
 Sistema de visão computacional para analisar o **Street Rush** do Last War (cliente oficial para PC) e, no futuro, jogar de forma autônoma buscando a maior pontuação.
 
-Esta primeira versão **apenas captura a tela e valida detecções visuais**. Não envia teclado/mouse, não altera o cliente e não manipula memória ou rede.
+Esta versão **captura o monitor integral em segundo plano** e valida detecções visuais. Não envia teclado/mouse, não altera o cliente e não manipula memória ou rede.
 
 ## Requisitos
 
 - Windows (cliente Last War)
 - Python 3.10+
-- Resolução alvo do jogo: **1918 × 1078**
+- Monitor do jogo (referência do projeto: **1918 × 1078** — a captura usa a resolução real do MSS)
 
-## Estrutura
+## Comando definitivo
 
+```bash
+python -m src.main
 ```
-street-rush-ai/
-├── src/
-│   ├── main.py              # Ponto de entrada
-│   ├── screen_capture.py    # Captura MSS + preview/FPS
-│   ├── vision.py            # Detecção e bounding boxes
-│   ├── game_state.py        # Estado estruturado do jogo
-│   └── config.py            # Configurações centralizadas
-├── tests/
-├── data/                    # Capturas e amostras
-├── models/                  # Modelos futuros
-├── requirements.txt
-├── README.md
-└── .gitignore
+
+Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.
+
+## Fluxo recomendado (Alt+Tab)
+
+1. Abra o Cursor e o terminal integrado.
+2. Execute: `python -m src.main`
+3. Confira no terminal o monitor e a resolução reportados pelo MSS.
+4. Use **Alt+Tab** para colocar o **Last War** em primeiro plano.
+5. O Python continua capturando o monitor e processando frames em segundo plano.
+6. Volte ao terminal (Alt+Tab) e use **Ctrl+C** para encerrar.
+
+Não é necessário manter o Cursor em primeiro plano. Não há seletor de região (`selectROI`).
+
+### Salvar frames com o jogo em foco
+
+Como o teclado vai para o Last War, use um destes métodos:
+
+```bash
+# Ao iniciar: a cada 5 segundos
+python -m src.main --save-interval 5
+
+# Ao iniciar: a cada 60 frames
+python -m src.main --save-every 60
+
+# Em runtime (sem roubar foco): crie o arquivo-sentinela
+# PowerShell:
+New-Item -ItemType File -Force data\captures\.save_now
+```
+
+Frames são gravados em `data/captures/`.
+
+### Preview opcional (calibração)
+
+```bash
+python -m src.main --preview
+```
+
+Abre uma janela pequena no canto, sem alterar a captura integral. Preferível em segundo monitor ou só para calibração — pode cobrir parte do jogo se estiver no mesmo monitor.
+
+### Outras opções
+
+```bash
+python -m src.main --stats-interval 1
+python -m src.main --dump-state
+python -m src.main --monitor 1
+python -m src.main --image data/captures/algum_frame.png
 ```
 
 ## Instalação
@@ -37,94 +73,76 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## Execução
+## Estrutura
 
-### Captura contínua com preview
-
-```bash
-python -m src.main
+```
+street-rush-ai/
+├── src/
+│   ├── main.py              # Coordenação / loop / monitoramento
+│   ├── screen_capture.py    # Captura integral do monitor (MSS)
+│   ├── vision.py            # Reconhecimento visual
+│   ├── game_state.py        # Estado do jogo
+│   └── config.py            # Configurações centralizadas
+├── tests/
+├── data/captures/
+├── models/
+├── requirements.txt
+└── README.md
 ```
 
-Teclas no preview:
+## Monitoramento no terminal
 
-| Tecla | Ação |
-|-------|------|
-| `q` | Sair |
-| `r` | Selecionar região do jogo (ROI) |
-| `s` | Salvar frame em `data/captures/` |
+A cada `--stats-interval` (padrão 1 s) o log mostra:
 
-### Região fixa (sem tela inteira)
+- Índice e resolução do monitor (MSS)
+- Resolução do frame capturado
+- FPS de captura
+- Frames processados
+- Tempo médio de processamento (ms)
+- Contagem de erros de captura
+- Resumo de objetos detectados
 
-```bash
-python -m src.main --region 0,0,1918,1078
-```
+## Compatibilidade MSS × Last War
 
-### Seleção interativa de ROI na abertura
+| Modo do jogo | Expectativa com MSS | Ação recomendada |
+|--------------|---------------------|------------------|
+| Janela | Em geral funciona | OK |
+| Maximizado | Em geral funciona | OK |
+| Tela cheia *borderless* / janela sem bordas | Em geral funciona (desktop composition) | **Preferido** |
+| Tela cheia *exclusiva* (DirectX exclusive fullscreen) | Pode capturar tela preta, frame antigo ou falhar | Evitar; usar borderless / janela |
 
-```bash
-python -m src.main --select-region
-```
+### Limitação conhecida
 
-### Analisar imagem estática (calibração / CI)
+MSS lê o framebuffer do desktop (BitBlt / Desktop Duplication conforme backend). Em **fullscreen exclusivo**, o jogo pode apresentar direto na GPU sem passar pelo desktop — a captura pode não ver o frame real.
 
-```bash
-python -m src.main --image data/captures/frame_000001.png --no-preview
-```
+**Solução compatível (sem modificar o cliente):** nas opções gráficas do Last War / Windows, use modo **janela sem bordas (borderless)** ou **janela maximizada** na resolução nativa do monitor. Não alteramos arquivos do cliente nem memória do processo.
 
-### Dump do estado (JSON)
+Esta limitação **não** é coberta pelos testes automatizados da CI/Linux; valide no Windows com o jogo aberto (salve um frame e confira se a imagem mostra o Street Rush).
 
-```bash
-python -m src.main --dump-state
-```
-
-## Testes
+## O que os testes automatizados cobrem
 
 ```bash
 pytest
 ```
 
-## Módulos
+| Cobertura automatizada | Fora do escopo automatizado (manual) |
+|------------------------|--------------------------------------|
+| Geometria dinâmica do MSS (mock) | Alt+Tab com Last War real |
+| Captura integral sem ROI | Fullscreen exclusivo vs borderless |
+| Loop sem preview | Qualidade visual dos frames do jogo |
+| Stats / erros / save sentinela | Calibração HSV com arte do Street Rush |
+| Análise offline de imagem | Desempenho em 1918×1078 no hardware do usuário |
 
-### Captura (`screen_capture.py`)
+## Visão e estado
 
-- OpenCV + NumPy + MSS
-- Captura contínua
-- Janela de preview independente com FPS
-- Região configurável (`--region` ou tecla `r`)
+- `vision.py`: personagem, caminhões, barreiras, moedas (HSV + contornos). Só objetos realmente detectados.
+- `game_state.py`: distância (fluxo óptico quando houver evidência), posição do personagem, obstáculos relativos, moedas.
 
-### Visão (`vision.py`)
+Calibre HSV em `src/config.py` com frames reais salvos de `data/captures/`.
 
-Detecta (quando houver evidência no frame):
+## Restrições
 
-- Personagem
-- Caminhões
-- Barreiras / obstáculos
-- Moedas
-
-Delimita com bounding boxes e calcula posição relativa ao personagem, aproximando a perspectiva 3D pela posição vertical na imagem.
-
-**Importante:** objetos só entram no resultado se forem detectados de fato. Não há coordenadas inventadas. Os intervalos HSV em `src/config.py` são pontos de partida — calibre com capturas reais do Street Rush.
-
-### Estado (`game_state.py`)
-
-Representação estruturada com:
-
-- Distância percorrida (estimativa por fluxo óptico, ou `null` sem evidência)
-- Posição do personagem
-- Objetos detectados
-- Posição relativa dos obstáculos
-- Moedas no percurso
-
-## Calibração HSV
-
-1. Rode o jogo em 1918×1078 e selecione a ROI.
-2. Salve frames com `s`.
-3. Ajuste `character_hsv`, `truck_hsv`, `barrier_hsv` e `coin_hsv` em `src/config.py`.
-4. Valide com `python -m src.main --image ...`.
-
-## Restrições (v0.1)
-
-- Sem controle de teclado/mouse
+- Sem teclado/mouse no jogo
 - Sem modificação do cliente oficial
 - Sem leitura de memória / pacotes de rede
 
