@@ -16,7 +16,11 @@ from typing import Tuple
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 CAPTURES_DIR = DATA_DIR / "captures"
+DEBUG_DIR = DATA_DIR / "debug"
 MODELS_DIR = PROJECT_ROOT / "models"
+
+# Arquivos de captura a ignorar na renderização de debug offline.
+CAPTURE_IGNORE_NAMES = frozenset({"synthetic_sample.png"})
 
 # Arquivo-sentinela: se existir, o loop salva um frame e remove o arquivo.
 # Funciona mesmo com o Last War em primeiro plano (sem roubar foco).

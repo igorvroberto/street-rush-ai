@@ -18,7 +18,11 @@ python -m src.main --diag-capture
 
 # 2) Loop contínuo (NÃO encerra sozinho — use Ctrl+C)
 python -m src.main --save-every 30
+
+# 3) Debug offline: boxes HSV nos frames reais → data/debug/
+python -m src.main --render-debug
 ```
+
 
 Preview desligado por padrão. O processo continua ativo com o Last War em primeiro plano.
 Sem `--save-every` / `--save-interval`, **nenhum PNG é gravado** (o loop só processa e loga).

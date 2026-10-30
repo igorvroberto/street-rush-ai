@@ -143,6 +143,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--render-debug",
+        action="store_true",
+        help=(
+            "Gera imagens de debug (boxes + contagens) a partir dos frames "
+            "reais em data/captures/ e salva em data/debug/ (sem captura ao vivo)."
+        ),
+    )
+    parser.add_argument(
         "--trace-frames",
         action="store_true",
         default=True,
@@ -567,6 +575,11 @@ def run_capture_loop(
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    if args.render_debug:
+        from src.debug_render import run_debug_cli
+
+        return run_debug_cli()
 
     if args.image:
         return analyze_image(Path(args.image), show_preview=bool(args.preview))
